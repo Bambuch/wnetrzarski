@@ -35,5 +35,3 @@ open test-harness.html        # macOS
 xdg-open test-harness.html    # Linux
 start test-harness.html       # Windows
 ```
-
-Narzędzie przeznaczone dla Tomka do ręcznego przeglądu reguł biznesowych.

@@ -5,7 +5,7 @@ import { TableConfig, ValidationMessage } from '../types';
 // Sources: Cosentino/Silestone tech specs, Italian stone association guidelines.
 
 // [RULE-MAT-01] Minimum absolute thickness per material
-const MATERIAL_MIN_THICKNESS: Record<string, number> = {
+export const MATERIAL_MIN_THICKNESS: Record<string, number> = {
   sintered_stone: 12,   // spiek: 12mm is viable for structural use at short spans
   quartz:         20,   // kwarc: 20mm minimum due to lower flexural strength vs sintered
   marble:         20,   // marmur: 20mm — natural stone, brittle, prone to cracking
@@ -14,7 +14,7 @@ const MATERIAL_MIN_THICKNESS: Record<string, number> = {
 
 // [RULE-MAT-02] Increased minimum thickness for long spans (>1200mm / >1400mm)
 // Deflection under load: δ = 5qL⁴/(384EI), I = bh³/12 — thicker = cube improvement
-const MATERIAL_SPAN_UPGRADE: Array<{
+export const MATERIAL_SPAN_UPGRADE: Array<{
   materials: string[];
   spanThresholdMm: number;
   minThicknessMm: number;

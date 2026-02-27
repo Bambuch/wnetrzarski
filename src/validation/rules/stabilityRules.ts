@@ -7,10 +7,10 @@ import { TableConfig, ValidationMessage } from '../types';
 // (conservative for domestic furniture, origin: furniture stability EN 1730 approximation)
 
 // [RULE-STAB-01] Stability ratio: footprint width / totalHeight >= 0.45
-const MIN_STABILITY_RATIO = 0.45;
+export const MIN_STABILITY_RATIO = 0.45;
 
 // [RULE-STAB-02] Pedestal base: base diameter >= 0.4 × totalHeight
-const PEDESTAL_BASE_RATIO = 0.4;
+export const PEDESTAL_BASE_RATIO = 0.4;
 
 // [RULE-STAB-03] Foot base required for tall thin legs
 // Prevents overturning and floor damage; common in high-end furniture manufacturing.

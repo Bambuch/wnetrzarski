@@ -33,6 +33,22 @@ export interface TableConfig {
   totalHeightMm: number;             // should equal legHeightMm + topThicknessMm
 }
 
+export interface FieldConstraint {
+  min: number;
+  max: number;
+  reason: string;  // Polish, shown inline next to the field
+}
+
+export interface FieldConstraints {
+  topThicknessMm:   FieldConstraint & { recommended: number };
+  topFaceThicknessMm: FieldConstraint & { recommended: number };
+  topLengthMm:      FieldConstraint;
+  topWidthMm:       FieldConstraint;
+  totalHeightMm:    FieldConstraint;
+  legProfileSizeMm: FieldConstraint;
+  legRadialSpreadMm: FieldConstraint;
+}
+
 export interface ValidationMessage {
   ruleId: string;
   field: keyof TableConfig;

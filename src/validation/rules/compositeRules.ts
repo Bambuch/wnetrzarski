@@ -6,7 +6,7 @@ import { TableConfig, ValidationMessage } from '../types';
 
 // [RULE-COMP-01] Minimum face panel thickness per material
 // Sintered stone can go to 6mm due to high flexural strength; natural stones need 12mm.
-const COMPOSITE_FACE_MIN: Record<string, number> = {
+export const COMPOSITE_FACE_MIN: Record<string, number> = {
   sintered_stone: 6,
   quartz:         12,
   marble:         12,
@@ -15,7 +15,7 @@ const COMPOSITE_FACE_MIN: Record<string, number> = {
 
 // [RULE-COMP-02 / COMP-03] Minimum core thickness
 // Below 10mm the core cannot be reliably bonded and provides no structural benefit.
-const MIN_CORE_MM = 10;
+export const MIN_CORE_MM = 10;
 
 export function checkCompositeTop(config: TableConfig): ValidationMessage[] {
   const violations: ValidationMessage[] = [];

@@ -93,12 +93,26 @@
       font-size: 13px;
       background: #fff;
       color: #1a1a2e;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, background 0.15s;
     }
     select:focus, input[type="number"]:focus {
       outline: none;
       border-color: #4a6fa5;
       box-shadow: 0 0 0 2px rgba(74,111,165,0.15);
+    }
+
+    /* Remove browser spinner arrows — user types freely */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type="number"] { -moz-appearance: textfield; }
+
+    /* Out-of-range: red border but field stays fully editable */
+    input[type="number"].out-of-range {
+      border-color: #e74c3c;
+      background: #fff8f8;
+    }
+    input[type="number"].out-of-range:focus {
+      box-shadow: 0 0 0 2px rgba(231,76,60,0.15);
     }
 
     .checkbox-field {
@@ -232,6 +246,20 @@
       padding: 4px 0;
     }
 
+    /* Dynamic constraint hint shown inline below each constrained field */
+    .field-wrap { display: flex; flex-direction: column; gap: 3px; }
+    .field-reason {
+      font-size: 11px;
+      color: #6677aa;
+      line-height: 1.4;
+      min-height: 0;
+    }
+    .field-reason:empty { display: none; }
+    .field-reason.out-of-range-hint {
+      color: #c0392b;
+      font-weight: 500;
+    }
+
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
     }
@@ -269,7 +297,10 @@
 
           <div class="field">
             <label for="topThicknessMm">Grubość (mm)</label>
-            <input type="number" id="topThicknessMm" value="20" min="6" max="60" step="1" />
+            <div class="field-wrap">
+              <input type="number" id="topThicknessMm" value="20" step="1" />
+              <span class="field-reason" id="reasonTopThickness"></span>
+            </div>
           </div>
 
           <div class="field">
@@ -285,12 +316,18 @@
 
           <div class="field" id="fieldTopLength">
             <label for="topLengthMm" id="labelTopLength">Długość (mm)</label>
-            <input type="number" id="topLengthMm" value="1800" min="200" max="4000" step="10" />
+            <div class="field-wrap">
+              <input type="number" id="topLengthMm" value="1800" step="10" />
+              <span class="field-reason" id="reasonTopLength"></span>
+            </div>
           </div>
 
           <div class="field" id="fieldTopWidth">
             <label for="topWidthMm">Szerokość (mm)</label>
-            <input type="number" id="topWidthMm" value="900" min="200" max="2000" step="10" />
+            <div class="field-wrap">
+              <input type="number" id="topWidthMm" value="900" step="10" />
+              <span class="field-reason" id="reasonTopWidth"></span>
+            </div>
           </div>
 
           <div class="field">
@@ -313,7 +350,10 @@
 
           <div class="field" id="fieldTopFaceThickness" style="display:none">
             <label for="topFaceThicknessMm">Grubość tafli (mm)</label>
-            <input type="number" id="topFaceThicknessMm" value="6" min="3" max="30" step="1" />
+            <div class="field-wrap">
+              <input type="number" id="topFaceThicknessMm" value="6" step="1" />
+              <span class="field-reason" id="reasonTopFace"></span>
+            </div>
           </div>
 
           <div class="section-title">Nogi (Legs)</div>
@@ -355,7 +395,10 @@
 
           <div class="field">
             <label for="legProfileSizeMm" id="labelLegProfileSize">Rozmiar profilu (mm)</label>
-            <input type="number" id="legProfileSizeMm" value="60" min="10" max="500" step="5" />
+            <div class="field-wrap">
+              <input type="number" id="legProfileSizeMm" value="60" step="5" />
+              <span class="field-reason" id="reasonLegProfile"></span>
+            </div>
           </div>
 
           <div class="field">
@@ -376,12 +419,15 @@
 
           <div class="field" id="fieldLegRadialSpread" style="display:none">
             <label for="legRadialSpreadMm">Promień rozstawu (mm)</label>
-            <input type="number" id="legRadialSpreadMm" value="350" min="50" max="1000" step="10" />
+            <div class="field-wrap">
+              <input type="number" id="legRadialSpreadMm" value="350" step="10" />
+              <span class="field-reason" id="reasonRadialSpread"></span>
+            </div>
           </div>
 
           <div class="field">
             <label for="legHeightMm">Wysokość nogi (mm)</label>
-            <input type="number" id="legHeightMm" value="700" min="100" max="1000" step="5" />
+            <input type="number" id="legHeightMm" value="700" step="5" />
           </div>
 
           <div class="checkbox-field">
@@ -393,7 +439,10 @@
 
           <div class="field">
             <label for="totalHeightMm">Wys. całkowita (mm)</label>
-            <input type="number" id="totalHeightMm" value="720" min="100" max="1200" step="5" />
+            <div class="field-wrap">
+              <input type="number" id="totalHeightMm" value="720" step="5" />
+              <span class="field-reason" id="reasonTotalHeight"></span>
+            </div>
           </div>
 
           <button type="button" class="btn-validate" onclick="runValidation()">
@@ -1032,6 +1081,226 @@ const FIELD_LABELS = {
   totalHeightMm:      'Wys. całkowita (mm)',
 };
 
+// ── DYNAMIC CONSTRAINTS ──────────────────────────────────────
+// Mirror of src/validation/constraints.ts — same thresholds, single source of truth.
+
+const ABS_BOUNDS = {
+  topThickness: { min: 6,   max: 60   },
+  topFace:      { min: 3,   max: 30   },
+  topLength:    { min: 200, max: 4000 },
+  topWidth:     { min: 100, max: 2000 },
+  legProfile:   { min: 10,  max: 500  },
+  radialSpread: { min: 50,  max: 1500 },
+};
+
+function getConstraints(p) {
+  return {
+    topThicknessMm:    cTopThickness(p),
+    topFaceThicknessMm: cTopFace(p),
+    topLengthMm:       cTopLength(p),
+    topWidthMm:        cTopWidth(p),
+    totalHeightMm:     { min: 350, max: 1100, reason: 'Ergonomia: od 350mm (kawowy) do 1100mm (barowy)' },
+    legProfileSizeMm:  cLegProfile(p),
+    legRadialSpreadMm: cRadialSpread(p),
+  };
+}
+
+function cTopThickness(p) {
+  let min = ABS_BOUNDS.topThickness.min, reason = 'Minimum produkcyjne';
+  const isComposite = p.topConstruction === 'composite';
+  if (isComposite) {
+    const faceMin = p.topFaceThicknessMm
+      ?? (p.topMaterial ? (COMPOSITE_FACE_MIN[p.topMaterial] ?? 6) : 6);
+    const minTotal = 2 * faceMin + MIN_CORE_MM;
+    if (minTotal > min) { min = minTotal; reason = `Kompozyt: 2×${faceMin}mm tafle + ${MIN_CORE_MM}mm rdzeń = min. ${minTotal}mm`; }
+  } else {
+    if (p.topMaterial) {
+      const m = MATERIAL_MIN_THICKNESS[p.topMaterial] ?? min;
+      if (m > min) { min = m; reason = `${mlShort(p.topMaterial)} wymaga min. ${m}mm`; }
+    }
+    if (p.topMaterial && p.topLengthMm != null) {
+      for (const rule of MATERIAL_SPAN_UPGRADE) {
+        if (rule.materials.includes(p.topMaterial) && p.topLengthMm > rule.spanThresholdMm && rule.minThicknessMm > min) {
+          min = rule.minThicknessMm;
+          reason = `${mlShort(p.topMaterial)} przy ${p.topLengthMm}mm wymaga min. ${min}mm (ugięcie)`;
+        }
+      }
+    }
+    if (p.topMaterial && p.topLengthMm != null && p.legCount > 1 && p.legProfileType !== 'radial_halfcylinder') {
+      const sm = minThicknessForSpan(p.topMaterial, p.topLengthMm, 1.0);
+      if (sm !== null && sm > min) { min = sm; reason = `${mlShort(p.topMaterial)} ${p.topLengthMm}mm wymaga min. ${min}mm (rozpiętość)`; }
+    }
+    if (p.topEdgeFinish) {
+      const em = EDGE_MIN_THICKNESS[p.topEdgeFinish];
+      if (em !== undefined && em > min) { min = em; reason = `Krawędź "${edgeLabel(p.topEdgeFinish)}" wymaga min. ${em}mm`; }
+    }
+  }
+  const rec = isComposite ? min : recThickness(p.topMaterial, p.topLengthMm, min);
+  return { min, max: ABS_BOUNDS.topThickness.max, recommended: rec, reason };
+}
+
+function cTopFace(p) {
+  let min = ABS_BOUNDS.topFace.min, reason = 'Minimum produkcyjne tafli';
+  if (p.topConstruction === 'composite' && p.topMaterial) {
+    const fm = COMPOSITE_FACE_MIN[p.topMaterial] ?? min;
+    if (fm > min) { min = fm; reason = `${mlShort(p.topMaterial)}: min. ${fm}mm tafli (COMP-01)`; }
+  }
+  if (p.topConstruction === 'composite' && p.topEdgeFinish) {
+    const em = EDGE_MIN_THICKNESS[p.topEdgeFinish];
+    if (em !== undefined && em > min) { min = em; reason = `Krawędź "${edgeLabel(p.topEdgeFinish)}" wymaga min. ${em}mm tafli`; }
+  }
+  const maxFromTotal = p.topThicknessMm != null
+    ? Math.floor((p.topThicknessMm - MIN_CORE_MM) / 2)
+    : ABS_BOUNDS.topFace.max;
+  const max = Math.max(min, Math.min(ABS_BOUNDS.topFace.max, maxFromTotal));
+  return { min, max, recommended: min, reason };
+}
+
+function cTopLength(p) {
+  let max = ABS_BOUNDS.topLength.max, reason = 'Maksymalny wymiar produkcyjny';
+  const mult = p.topConstruction === 'composite' ? 1.4 : 1.0;
+  if (p.topMaterial && p.topThicknessMm != null && p.legCount > 1 && p.legProfileType !== 'radial_halfcylinder') {
+    const sm = maxSpanForThickness(p.topMaterial, p.topThicknessMm, mult);
+    if (sm !== null && sm < max) {
+      max = sm;
+      reason = `${mlShort(p.topMaterial)} ${p.topThicknessMm}mm: max ${max}mm${mult > 1 ? ' (kompozyt ×1.4)' : ''}`;
+    }
+  }
+  return { min: ABS_BOUNDS.topLength.min, max, reason };
+}
+
+function cTopWidth(p) {
+  let min = ABS_BOUNDS.topWidth.min, reason = 'Minimum produkcyjne';
+  if (p.legProfileType !== 'radial_halfcylinder' && p.totalHeightMm) {
+    const sm = Math.ceil(MIN_STABILITY_RATIO * p.totalHeightMm);
+    if (sm > min) { min = sm; reason = `Stateczność: min. ${sm}mm (≥ ${Math.round(MIN_STABILITY_RATIO*100)}% wysokości ${p.totalHeightMm}mm)`; }
+  }
+  return { min, max: ABS_BOUNDS.topWidth.max, reason };
+}
+
+function cLegProfile(p) {
+  let min = ABS_BOUNDS.legProfile.min, reason = 'Minimum strukturalne';
+  if (p.legProfileType === 'radial_halfcylinder') {
+    if (60 > min) { min = 60; reason = 'Półwalce promieniowe: min. 60mm średnicy (RADIAL-03)'; }
+    return { min, max: ABS_BOUNDS.legProfile.max, reason };
+  }
+  const isMetal = ['steel','stainless_steel','aluminum'].includes(p.legMaterial);
+  const isWood  = ['solid_wood','laminated_wood'].includes(p.legMaterial);
+  if (isMetal && p.legProfileType && p.legMaterial) {
+    const rule = LEG_MIN_PROFILES.find(r => r.materials.includes(p.legMaterial) && r.profileType === p.legProfileType);
+    if (rule && rule.minSizeMm > min) { min = rule.minSizeMm; reason = `Metalowa noga "${profileLabel(p.legProfileType)}" wymaga min. ${min}mm (LEG-01)`; }
+  }
+  if (isWood && p.legHeightMm != null) {
+    const wm = p.legHeightMm >= 750 ? 80 : 60;
+    if (wm > min) { min = wm; reason = `Drewniana noga ${p.legHeightMm}mm: min. ${wm}mm (LEG-02)`; }
+  }
+  if (p.legHeightMm != null && (isMetal || isWood)) {
+    const maxS = isWood ? MAX_SLENDERNESS_WOOD : MAX_SLENDERNESS_METAL;
+    const sm = Math.ceil(p.legHeightMm / maxS);
+    if (sm > min) { min = sm; reason = `Smukłość λ≤${maxS}: min. ${sm}mm przy wys. ${p.legHeightMm}mm (LEG-03)`; }
+  }
+  if ((p.legCount === 1 || p.legProfileType === 'pedestal') && p.totalHeightMm) {
+    const pm = Math.ceil(0.4 * p.totalHeightMm);
+    if (pm > min) { min = pm; reason = `Piedestał: min. ${pm}mm podstawy (40% wys. ${p.totalHeightMm}mm)`; }
+  }
+  return { min, max: ABS_BOUNDS.legProfile.max, reason };
+}
+
+function cRadialSpread(p) {
+  let min = ABS_BOUNDS.radialSpread.min, reason = 'Minimalne rozpięcie półwalców';
+  if (p.totalHeightMm) {
+    const sm = Math.ceil(0.4 * p.totalHeightMm);
+    if (sm > min) { min = sm; reason = `Stateczność: min. ${sm}mm promienia (≥ 40% wysokości ${p.totalHeightMm}mm)`; }
+  }
+  return { min, max: ABS_BOUNDS.radialSpread.max, reason };
+}
+
+function minThicknessForSpan(material, span, mult) {
+  const tiers = SPAN_LIMITS_4LEG.filter(r => r.materials.includes(material)).sort((a,b) => a.minThicknessMm - b.minThicknessMm);
+  for (const t of tiers) { if (span <= t.maxSpanMm * mult) return t.minThicknessMm; }
+  return null;
+}
+function maxSpanForThickness(material, thickness, mult) {
+  const tiers = SPAN_LIMITS_4LEG.filter(r => r.materials.includes(material)).sort((a,b) => b.minThicknessMm - a.minThicknessMm);
+  const t = tiers.find(r => thickness >= r.minThicknessMm);
+  return t ? Math.round(t.maxSpanMm * mult) : null;
+}
+function recThickness(material, length, atLeast) {
+  let rec = atLeast;
+  if (!material) return Math.max(rec, 20);
+  if (material === 'sintered_stone') rec = Math.max(rec, length > 1200 ? 20 : 12);
+  else rec = Math.max(rec, length > 1400 ? 30 : 20);
+  return rec;
+}
+function mlShort(m) {
+  return { sintered_stone:'Spiek', quartz:'Kwarc', marble:'Marmur', granite:'Granit' }[m] || m;
+}
+
+// Reads a partial config from the form (no validation — just current values)
+function readPartialConfig() {
+  const n = id => document.getElementById(id);
+  const numVal = id => { const v = parseInt(n(id).value, 10); return isNaN(v) ? undefined : v; };
+  const p = {
+    topMaterial:      n('topMaterial').value,
+    topConstruction:  n('topConstruction').value,
+    topThicknessMm:   numVal('topThicknessMm'),
+    topLengthMm:      numVal('topLengthMm'),
+    topWidthMm:       numVal('topWidthMm'),
+    topEdgeFinish:    n('topEdgeFinish').value,
+    legCount:         parseInt(n('legCount').value, 10),
+    legMaterial:      n('legMaterial').value,
+    legProfileType:   n('legProfileType').value,
+    legProfileSizeMm: numVal('legProfileSizeMm'),
+    legHeightMm:      numVal('legHeightMm'),
+    totalHeightMm:    numVal('totalHeightMm'),
+  };
+  if (n('topConstruction').value === 'composite') p.topFaceThicknessMm = numVal('topFaceThicknessMm');
+  if (n('legProfileType').value === 'radial_halfcylinder') {
+    p.legRadialSpreadMm = numVal('legRadialSpreadMm');
+    p.legRadialCount = parseInt(n('legRadialCount').value, 10);
+  }
+  return p;
+}
+
+// Applies computed constraints to form inputs + shows reason text.
+function updateConstraints() {
+  const p = readPartialConfig();
+  const c = getConstraints(p);
+
+  const BORING_REASONS = new Set(['Minimum produkcyjne', 'Maksymalny wymiar produkcyjny', 'Minimum produkcyjne tafli', 'Minimalne rozpięcie półwalców', 'Minimum strukturalne']);
+
+  function applyField(inputId, reasonId, constraint) {
+    const el = document.getElementById(inputId);
+    const re = document.getElementById(reasonId);
+    if (!el || !re) return;
+
+    // Never set el.min / el.max — browser should not restrict typing
+    const val = parseInt(el.value, 10);
+    const outOfRange = !isNaN(val) && el.value.trim() !== '' && (val < constraint.min || val > constraint.max);
+
+    // Red border when out of range, but don't touch the value
+    el.classList.toggle('out-of-range', outOfRange);
+
+    // Build hint text: always show range; add reason when it's informative
+    const rangeText = `Zakres: ${constraint.min}–${constraint.max} mm`;
+    const reasonText = BORING_REASONS.has(constraint.reason) ? '' : constraint.reason;
+    re.textContent = reasonText ? `${rangeText} — ${reasonText}` : rangeText;
+    re.className = 'field-reason' + (outOfRange ? ' out-of-range-hint' : '');
+  }
+
+  applyField('topThicknessMm',     'reasonTopThickness', c.topThicknessMm);
+  applyField('topFaceThicknessMm', 'reasonTopFace',       c.topFaceThicknessMm);
+  applyField('topLengthMm',        'reasonTopLength',     c.topLengthMm);
+  applyField('topWidthMm',         'reasonTopWidth',      c.topWidthMm);
+  applyField('totalHeightMm',      'reasonTotalHeight',   c.totalHeightMm);
+  applyField('legProfileSizeMm',   'reasonLegProfile',    c.legProfileSizeMm);
+  applyField('legRadialSpreadMm',  'reasonRadialSpread',  c.legRadialSpreadMm);
+
+  // Tooltip: recommended thickness
+  const tEl = document.getElementById('topThicknessMm');
+  if (tEl) tEl.title = `Zalecane: ${c.topThicknessMm.recommended} mm`;
+}
+
 // ── UI LOGIC ─────────────────────────────────────────────────
 
 // Adapts the length/width fields to the selected shape.
@@ -1061,6 +1330,7 @@ function updateTopConstructionFields() {
   const construction = document.getElementById('topConstruction').value;
   const fieldFace    = document.getElementById('fieldTopFaceThickness');
   fieldFace.style.display = construction === 'composite' ? '' : 'none';
+  updateConstraints();
 }
 
 // Shows / hides radial-specific fields based on profile type.
@@ -1071,6 +1341,7 @@ function updateLegFields() {
   document.getElementById('fieldLegRadialSpread').style.display = isRadial ? '' : 'none';
   const labelSize = document.getElementById('labelLegProfileSize');
   labelSize.textContent = isRadial ? 'Średnica półwalca (mm)' : 'Rozmiar profilu (mm)';
+  updateConstraints();
 }
 
 function readConfig() {
@@ -1201,6 +1472,25 @@ function runValidation() {
 
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// ── INIT ─────────────────────────────────────────────────────
+let _validationTimer = null;
+
+document.getElementById('configForm').addEventListener('input', function () {
+  // Constraints update immediately — no flicker, no wait
+  updateConstraints();
+  // Full validation fires after 300ms of inactivity
+  clearTimeout(_validationTimer);
+  _validationTimer = setTimeout(function () {
+    // Only auto-run if results panel is already visible (don't surprise the user)
+    if (document.getElementById('results').style.display !== 'none') {
+      runValidation();
+    }
+  }, 300);
+});
+
+// Initial constraint hints on page load
+updateConstraints();
 </script>
 </body>
 </html>

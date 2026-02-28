@@ -6,7 +6,7 @@ import { TableConfig, ValidationMessage } from '../types';
 // [RULE-EDGE-01] Mitered edge: requires >= 20mm (enough stock for a clean 45° cut through full depth)
 // [RULE-EDGE-02] Beveled edge: requires >= 12mm (shallow angle, less material removed)
 
-const EDGE_MIN_THICKNESS: Record<string, number> = {
+export const EDGE_MIN_THICKNESS: Record<string, number> = {
   mitered: 20,
   beveled: 12,
 };

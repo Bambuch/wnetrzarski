@@ -8,7 +8,7 @@ import { TableConfig, ValidationMessage } from '../types';
 
 // [RULE-LEG-01] Minimum profile dimensions per material/profile type
 // Based on standard furniture leg stock sizes and structural adequacy.
-const LEG_MIN_PROFILES: Array<{
+export const LEG_MIN_PROFILES: Array<{
   materials: string[];
   profileType: string;
   minSizeMm: number;
@@ -20,14 +20,14 @@ const LEG_MIN_PROFILES: Array<{
 ];
 
 // [RULE-LEG-02] Wood leg minimum size — depends on height
-const WOOD_MIN_PROFILE_SHORT = 60;  // mm, for legHeight < 750mm
-const WOOD_MIN_PROFILE_TALL  = 80;  // mm, for legHeight >= 750mm
-const WOOD_TALL_THRESHOLD    = 750; // mm
+export const WOOD_MIN_PROFILE_SHORT = 60;  // mm, for legHeight < 750mm
+export const WOOD_MIN_PROFILE_TALL  = 80;  // mm, for legHeight >= 750mm
+export const WOOD_TALL_THRESHOLD    = 750; // mm
 
 // [RULE-LEG-03] Slenderness ratio limits
 // λ = legHeightMm / legProfileSizeMm
-const MAX_SLENDERNESS_METAL = 25;
-const MAX_SLENDERNESS_WOOD  = 15;
+export const MAX_SLENDERNESS_METAL = 25;
+export const MAX_SLENDERNESS_WOOD  = 15;
 
 const METAL_MATERIALS = new Set(['steel', 'stainless_steel', 'aluminum']);
 const WOOD_MATERIALS  = new Set(['solid_wood', 'laminated_wood']);
@@ -36,13 +36,13 @@ const WOOD_MATERIALS  = new Set(['solid_wood', 'laminated_wood']);
 const PEDESTAL_VALID_SHAPES = new Set(['round', 'square']);
 
 // [RULE-RADIAL-01] Minimum spread for radial halfcylinder base
-const RADIAL_SPREAD_RATIO = 0.4; // legRadialSpreadMm >= 0.4 × totalHeightMm
+export const RADIAL_SPREAD_RATIO = 0.4; // legRadialSpreadMm >= 0.4 × totalHeightMm
 
 // [RULE-RADIAL-02] Minimum number of halfcylinders
-const RADIAL_MIN_COUNT = 3;
+export const RADIAL_MIN_COUNT = 3;
 
 // [RULE-RADIAL-03] Minimum halfcylinder diameter
-const RADIAL_MIN_DIAMETER_MM = 60;
+export const RADIAL_MIN_DIAMETER_MM = 60;
 
 export function checkLegRules(config: TableConfig): ValidationMessage[] {
   const violations: ValidationMessage[] = [];

@@ -1,4 +1,6 @@
 import { TableConfig, ValidationResult, ValidationMessage } from './types';
+export { getFieldConstraints } from './constraints';
+export type { FieldConstraints, FieldConstraint } from './types';
 import { checkCompositeTop } from './rules/compositeRules';
 import { checkMaterialThickness } from './rules/materialRules';
 import { checkSpan } from './rules/spanRules';

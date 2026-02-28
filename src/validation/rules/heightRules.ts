@@ -5,8 +5,8 @@ import { TableConfig, ValidationMessage } from '../types';
 
 // [RULE-HGT-01] Total height physical limits
 // Coffee tables: 350–500mm, dining: 720–760mm, bar: 900–1100mm
-const MIN_TOTAL_HEIGHT = 350;  // mm — allows coffee tables (~400–500mm) and low side tables
-const MAX_TOTAL_HEIGHT = 1100; // mm — bar / standing table upper bound
+export const MIN_TOTAL_HEIGHT = 350;  // mm — allows coffee tables (~400–500mm) and low side tables
+export const MAX_TOTAL_HEIGHT = 1100; // mm — bar / standing table upper bound
 
 // [RULE-HGT-02] Standard dining table range (informational, not hard stop)
 const DINING_TABLE_MIN = 720; // mm

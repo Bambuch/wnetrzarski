@@ -10,7 +10,7 @@ import { TableConfig, ValidationMessage } from '../types';
 
 // [RULE-SPAN-01] Max span between legs for 4-leg / 2-leg / 6-leg setup
 // Limits reflect maximum supported table LENGTH (not clear span) per manufacturer specs.
-const SPAN_LIMITS_4LEG: Array<{
+export const SPAN_LIMITS_4LEG: Array<{
   materials: string[];
   minThicknessMm: number;
   maxSpanMm: number;
@@ -22,7 +22,7 @@ const SPAN_LIMITS_4LEG: Array<{
 ];
 
 // [RULE-SPAN-02] Pedestal (single central leg) — max top diagonal
-const PEDESTAL_SPAN_LIMITS: Array<{
+export const PEDESTAL_SPAN_LIMITS: Array<{
   minThicknessMm: number;
   maxDiagonalMm: number;
 }> = [

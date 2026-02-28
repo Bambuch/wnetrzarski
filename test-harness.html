@@ -263,6 +263,177 @@
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
     }
+
+    /* ── EXPERT MODE ──────────────────────────────────────────── */
+    .btn-expert {
+      margin-left: auto;
+      padding: 7px 14px;
+      background: transparent;
+      border: 1px solid #4a5568;
+      color: #ccd;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-expert:hover { background: rgba(255,255,255,0.08); border-color: #7a8aaa; }
+    .btn-expert.active { border-color: #f0a030; color: #f0a030; }
+
+    .expert-badge {
+      display: none;
+      background: #f0a030;
+      color: #1a1a2e;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.05em;
+      margin-left: 8px;
+    }
+    .expert-badge.visible { display: inline-block; }
+
+    #expertPanel { display: none; margin-top: 24px; }
+    #expertPanel.visible { display: block; }
+
+    .expert-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 2px solid #f0a030;
+    }
+    .expert-card-header {
+      background: #fffbf0;
+      border-bottom: 2px solid #f0c050;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .expert-card-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #8a5000;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .expert-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-ep {
+      padding: 6px 14px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid;
+      transition: opacity 0.15s;
+    }
+    .btn-ep:hover { opacity: 0.82; }
+    .btn-ep-save   { background: #1a7a4a; color: #fff; border-color: #1a7a4a; }
+    .btn-ep-export { background: #2c5282; color: #fff; border-color: #2c5282; }
+    .btn-ep-import { background: #6b46c1; color: #fff; border-color: #6b46c1; }
+    .btn-ep-reset  { background: #fff; color: #c0392b; border-color: #c0392b; }
+
+    .ep-tab-bar {
+      display: flex;
+      border-bottom: 1px solid #e5e8ed;
+      background: #f8f9fb;
+      flex-wrap: wrap;
+    }
+    .ep-tab {
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .ep-tab:hover { color: #1a1a2e; }
+    .ep-tab.active { color: #8a5000; border-bottom-color: #f0a030; }
+
+    .ep-tab-content { display: none; padding: 20px; }
+    .ep-tab-content.active { display: block; }
+
+    .ep-group { margin-bottom: 20px; }
+    .ep-group-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8899aa;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #eef0f3;
+    }
+    .ep-field {
+      display: grid;
+      grid-template-columns: 230px 110px 1fr;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .ep-field label { font-size: 12px; color: #444; }
+    .ep-field input[type="number"] { width: 100%; }
+    .ep-field .ep-desc { font-size: 11px; color: #8899aa; line-height: 1.4; }
+
+    .ep-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 8px; }
+    .ep-table th {
+      background: #f8f9fb;
+      border: 1px solid #e5e8ed;
+      padding: 6px 10px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ep-table td { border: 1px solid #e5e8ed; padding: 5px 7px; vertical-align: middle; }
+    .ep-table td input[type="number"] { width: 75px; }
+    .mat-checkboxes { display: flex; gap: 10px; flex-wrap: wrap; }
+    .mat-cb { display: flex; align-items: center; gap: 4px; font-size: 11px; }
+    .mat-cb input[type="checkbox"] { width: 14px; height: 14px; }
+
+    .btn-add-row {
+      margin-top: 6px;
+      padding: 4px 12px;
+      background: #e8f8f0;
+      color: #1a7a4a;
+      border: 1px solid #a3d9b8;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn-add-row:hover { background: #d0f0e0; }
+    .btn-del-row {
+      background: #fff5f5;
+      color: #c0392b;
+      border: 1px solid #f5a9a9;
+      border-radius: 3px;
+      padding: 2px 7px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    .btn-del-row:hover { background: #ffe0e0; }
+
+    .ep-import-wrap { padding: 0 20px 16px; display: none; }
+    .ep-import-wrap textarea {
+      width: 100%;
+      height: 110px;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 8px;
+      border: 1px solid #d0d5dd;
+      border-radius: 5px;
+      resize: vertical;
+      margin-bottom: 6px;
+    }
   </style>
 </head>
 <body>
@@ -272,6 +443,8 @@
     <h1>Konfigurator Stołu — Walidacja Konstrukcji</h1>
     <span>Narzędzie wewnętrzne &bull; tylko do użytku producenta</span>
   </div>
+  <span class="expert-badge" id="expertBadge">● Reguły eksperta</span>
+  <button class="btn-expert" id="btnExpert" onclick="toggleExpertPanel()">Tryb eksperta ⚙</button>
 </header>
 
 <div class="container">
@@ -485,14 +658,110 @@
   </div>
 </div>
 
+<!-- EXPERT PANEL -->
+<div class="container">
+  <section id="expertPanel">
+    <div class="expert-card">
+      <div class="expert-card-header">
+        <h2>Panel Eksperta — Reguły Konstruktorskie ⚙</h2>
+        <div class="expert-actions">
+          <button class="btn-ep btn-ep-save"   onclick="saveRules()">Zapisz reguły</button>
+          <button class="btn-ep btn-ep-export" onclick="exportRules()">Eksportuj JSON</button>
+          <button class="btn-ep btn-ep-import" onclick="toggleImport()">Importuj JSON</button>
+          <button class="btn-ep btn-ep-reset"  onclick="resetRules()">Przywróć domyślne</button>
+        </div>
+      </div>
+      <div class="ep-import-wrap" id="epImportWrap" style="display:none; padding:12px 20px;">
+        <textarea id="epImportText" placeholder='Wklej JSON reguł tutaj...'></textarea>
+        <button class="btn-ep btn-ep-import" onclick="importRules()">Załaduj JSON</button>
+      </div>
+      <div class="ep-tab-bar" id="epTabBar"></div>
+      <div id="epTabContents"></div>
+    </div>
+  </section>
+</div>
+
 <script>
 // ============================================================
 // VALIDATION ENGINE — inlined from TypeScript source
 // ============================================================
 
-// ── COMPOSITE RULES ─────────────────────────────────────────
-const COMPOSITE_FACE_MIN = { sintered_stone: 6, quartz: 12, marble: 12, granite: 12 };
-const MIN_CORE_MM = 10;
+// ── DEFAULT RULES (all physical constants) ──────────────────
+const DEFAULT_RULES = {
+  // Kompozyt
+  compositeFaceMin:        { sintered_stone: 6, quartz: 12, marble: 12, granite: 12 },
+  minCoreMm:               10,
+  compositeSpanMultiplier: 1.4,
+
+  // Materiały
+  materialMinThickness:    { sintered_stone: 12, quartz: 20, marble: 20, granite: 20 },
+  materialSpanUpgrade: [
+    { materials: ['sintered_stone'],         spanThresholdMm: 1200, minThicknessMm: 20 },
+    { materials: ['marble', 'granite'],      spanThresholdMm: 1400, minThicknessMm: 30 },
+  ],
+
+  // Rozpiętość
+  spanLimits4Leg: [
+    { materials: ['sintered_stone'],                                 minThicknessMm: 12, maxSpanMm: 900  },
+    { materials: ['sintered_stone'],                                 minThicknessMm: 20, maxSpanMm: 1800 },
+    { materials: ['quartz', 'marble', 'granite'],                   minThicknessMm: 20, maxSpanMm: 1400 },
+    { materials: ['sintered_stone', 'quartz', 'marble', 'granite'], minThicknessMm: 30, maxSpanMm: 2400 },
+  ],
+  pedestalSpanLimits: [
+    { minThicknessMm: 20, maxDiagonalMm: 1000 },
+    { minThicknessMm: 30, maxDiagonalMm: 1200 },
+  ],
+
+  // Stateczność
+  minStabilityRatio:  0.45,
+  pedestalBaseRatio:  0.40,
+  footBaseRules: {
+    metal: { maxLegHeightWithoutBase: 700, minProfileForNoBase: 60 },
+    wood:  { maxLegHeightWithoutBase: 700, minProfileForNoBase: 80 },
+  },
+
+  // Nogi metalowe
+  legMinProfiles: [
+    { materials: ['steel','stainless_steel','aluminum'], profileType: 'round',       minSizeMm: 30 },
+    { materials: ['steel','stainless_steel','aluminum'], profileType: 'square',      minSizeMm: 40 },
+    { materials: ['steel','stainless_steel','aluminum'], profileType: 'rectangular', minSizeMm: 40 },
+  ],
+
+  // Nogi drewniane
+  woodMinProfileShort: 60,
+  woodMinProfileTall:  80,
+  woodTallThreshold:   750,
+
+  // Smukłość (Euler)
+  maxSlendernessMetal: 25,
+  maxSlendernessWood:  15,
+
+  // Półwalce promieniowe
+  radialSpreadRatio:   0.40,
+  radialMinCount:      3,
+  radialMinDiameterMm: 60,
+
+  // Wysokość
+  minTotalHeight:  350,
+  maxTotalHeight:  1100,
+  heightTolerance: 2,
+
+  // Wykończenie krawędziowe
+  edgeMinThickness: { mitered: 20, beveled: 12 },
+
+  // Granice absolutne pól formularza
+  absBounds: {
+    topThickness: { min: 6,   max: 60   },
+    topFace:      { min: 3,   max: 30   },
+    topLength:    { min: 200, max: 4000 },
+    topWidth:     { min: 100, max: 2000 },
+    legProfile:   { min: 10,  max: 500  },
+    radialSpread: { min: 50,  max: 1500 },
+  },
+};
+
+// Load from localStorage or use defaults
+let RULES = JSON.parse(localStorage.getItem('expertRules') || 'null') ?? structuredClone(DEFAULT_RULES);
 
 function checkCompositeTop(cfg) {
   const violations = [];
@@ -500,7 +769,7 @@ function checkCompositeTop(cfg) {
   const { topMaterial, topThicknessMm, topFaceThicknessMm } = cfg;
   if (topFaceThicknessMm == null) return violations;
 
-  const faceMin = COMPOSITE_FACE_MIN[topMaterial];
+  const faceMin = RULES.compositeFaceMin[topMaterial];
   if (faceMin != null && topFaceThicknessMm < faceMin) {
     violations.push({
       ruleId: 'COMP-01',
@@ -511,17 +780,17 @@ function checkCompositeTop(cfg) {
   }
 
   const core = topThicknessMm - 2 * topFaceThicknessMm;
-  if (core < MIN_CORE_MM) {
+  if (core < RULES.minCoreMm) {
     violations.push({
       ruleId: 'COMP-02',
       field: 'topFaceThicknessMm',
-      messagepl: `Rdzeń blatu kompozytowego (${topThicknessMm}mm − 2×${topFaceThicknessMm}mm = ${core}mm) jest zbyt cienki. Minimalna grubość rdzenia wynosi ${MIN_CORE_MM}mm.`,
-      messageTech: `Composite core ${core}mm < min ${MIN_CORE_MM}mm.`,
+      messagepl: `Rdzeń blatu kompozytowego (${topThicknessMm}mm − 2×${topFaceThicknessMm}mm = ${core}mm) jest zbyt cienki. Minimalna grubość rdzenia wynosi ${RULES.minCoreMm}mm.`,
+      messageTech: `Composite core ${core}mm < min ${RULES.minCoreMm}mm.`,
     });
   }
 
-  const minTotal = 2 * topFaceThicknessMm + MIN_CORE_MM;
-  if (topThicknessMm < minTotal && core >= MIN_CORE_MM) {
+  const minTotal = 2 * topFaceThicknessMm + RULES.minCoreMm;
+  if (topThicknessMm < minTotal && core >= RULES.minCoreMm) {
     violations.push({
       ruleId: 'COMP-03',
       field: 'topThicknessMm',
@@ -533,18 +802,6 @@ function checkCompositeTop(cfg) {
 }
 
 // ── MATERIAL RULES ──────────────────────────────────────────
-const MATERIAL_MIN_THICKNESS = {
-  sintered_stone: 12,
-  quartz: 20,
-  marble: 20,
-  granite: 20,
-};
-
-const MATERIAL_SPAN_UPGRADE = [
-  { materials: ['sintered_stone'], spanThresholdMm: 1200, minThicknessMm: 20 },
-  { materials: ['marble', 'granite'], spanThresholdMm: 1400, minThicknessMm: 30 },
-];
-
 function checkMaterialThickness(cfg) {
   const violations = [];
   // Composite tops use face-thickness rules (COMP-01) instead
@@ -552,7 +809,7 @@ function checkMaterialThickness(cfg) {
 
   const { topMaterial, topThicknessMm, topLengthMm } = cfg;
 
-  const absMin = MATERIAL_MIN_THICKNESS[topMaterial];
+  const absMin = RULES.materialMinThickness[topMaterial];
   if (topThicknessMm < absMin) {
     violations.push({
       ruleId: 'MAT-01',
@@ -562,7 +819,7 @@ function checkMaterialThickness(cfg) {
     });
   }
 
-  for (const rule of MATERIAL_SPAN_UPGRADE) {
+  for (const rule of RULES.materialSpanUpgrade) {
     if (rule.materials.includes(topMaterial) && topLengthMm > rule.spanThresholdMm && topThicknessMm < rule.minThicknessMm) {
       violations.push({
         ruleId: 'MAT-02',
@@ -576,17 +833,6 @@ function checkMaterialThickness(cfg) {
 }
 
 // ── SPAN RULES ───────────────────────────────────────────────
-const SPAN_LIMITS_4LEG = [
-  { materials: ['sintered_stone'],                                 minThicknessMm: 12, maxSpanMm: 900 },
-  { materials: ['sintered_stone'],                                 minThicknessMm: 20, maxSpanMm: 1800 },
-  { materials: ['quartz', 'marble', 'granite'],                   minThicknessMm: 20, maxSpanMm: 1400 },
-  { materials: ['sintered_stone', 'quartz', 'marble', 'granite'], minThicknessMm: 30, maxSpanMm: 2400 },
-];
-
-const PEDESTAL_SPAN_LIMITS = [
-  { minThicknessMm: 20, maxDiagonalMm: 1000 },
-  { minThicknessMm: 30, maxDiagonalMm: 1200 },
-];
 
 function checkSpan(cfg) {
   const violations = [];
@@ -597,12 +843,12 @@ function checkSpan(cfg) {
     ? topLengthMm
     : Math.sqrt(topLengthMm ** 2 + topWidthMm ** 2);
 
-  // Composite sandwich adds stiffness — apply 1.4× multiplier to span limits.
-  const compositeMultiplier = cfg.topConstruction === 'composite' ? 1.4 : 1.0;
+  // Composite sandwich adds stiffness — apply multiplier to span limits.
+  const compositeMultiplier = cfg.topConstruction === 'composite' ? RULES.compositeSpanMultiplier : 1.0;
 
   // Radial halfcylinder base is not a pedestal — skip pedestal span check.
   if ((legCount === 1 || legProfileType === 'pedestal') && legProfileType !== 'radial_halfcylinder') {
-    const limit = [...PEDESTAL_SPAN_LIMITS].reverse().find(l => topThicknessMm >= l.minThicknessMm);
+    const limit = [...RULES.pedestalSpanLimits].reverse().find(l => topThicknessMm >= l.minThicknessMm);
     const maxDiag = limit ? limit.maxDiagonalMm : 800;
     if (effectiveSpan > maxDiag) {
       violations.push({
@@ -617,7 +863,7 @@ function checkSpan(cfg) {
 
   if (legCount === 2 || legCount === 4 || legCount === 6) {
     const span = topLengthMm;
-    const applicableRule = [...SPAN_LIMITS_4LEG]
+    const applicableRule = [...RULES.spanLimits4Leg]
       .filter(r => r.materials.includes(topMaterial))
       .sort((a, b) => b.minThicknessMm - a.minThicknessMm)
       .find(r => topThicknessMm >= r.minThicknessMm);
@@ -636,8 +882,6 @@ function checkSpan(cfg) {
 }
 
 // ── STABILITY RULES ──────────────────────────────────────────
-const MIN_STABILITY_RATIO = 0.45;
-const PEDESTAL_BASE_RATIO = 0.4;
 const METAL_MATERIALS = new Set(['steel', 'stainless_steel', 'aluminum']);
 const WOOD_MATERIALS  = new Set(['solid_wood', 'laminated_wood']);
 
@@ -654,45 +898,48 @@ function checkStability(cfg) {
     : topWidthMm;
 
   const stabilityRatio = footprint / totalHeightMm;
-  if (stabilityRatio < MIN_STABILITY_RATIO) {
-    const minFootprint = Math.ceil(MIN_STABILITY_RATIO * totalHeightMm);
+  if (stabilityRatio < RULES.minStabilityRatio) {
+    const minFootprint = Math.ceil(RULES.minStabilityRatio * totalHeightMm);
     violations.push({
       ruleId: 'STAB-01',
       field: 'topWidthMm',
-      messagepl: `Stosunek rzutu poziomego (${footprint}mm) do wysokości (${totalHeightMm}mm) = ${stabilityRatio.toFixed(2)} jest poniżej progu ${MIN_STABILITY_RATIO}. Minimalne rozpięcie: ${minFootprint}mm.`,
-      messageTech: `Stability ratio ${stabilityRatio.toFixed(3)} < ${MIN_STABILITY_RATIO}.`,
+      messagepl: `Stosunek rzutu poziomego (${footprint}mm) do wysokości (${totalHeightMm}mm) = ${stabilityRatio.toFixed(2)} jest poniżej progu ${RULES.minStabilityRatio}. Minimalne rozpięcie: ${minFootprint}mm.`,
+      messageTech: `Stability ratio ${stabilityRatio.toFixed(3)} < ${RULES.minStabilityRatio}.`,
     });
   }
 
   // STAB-02 and STAB-03 do not apply to radial halfcylinder bases.
   if (!isRadial) {
     if (legCount === 1 || legProfileType === 'pedestal') {
-      const minBase = Math.ceil(PEDESTAL_BASE_RATIO * totalHeightMm);
+      const minBase = Math.ceil(RULES.pedestalBaseRatio * totalHeightMm);
+      const pct = Math.round(RULES.pedestalBaseRatio * 100);
       if (legProfileSizeMm < minBase) {
         violations.push({
           ruleId: 'STAB-02',
           field: 'legProfileSizeMm',
-          messagepl: `Podstawa piedestału ma ${legProfileSizeMm}mm, wymagane min. ${minBase}mm (40% wysokości ${totalHeightMm}mm).`,
+          messagepl: `Podstawa piedestału ma ${legProfileSizeMm}mm, wymagane min. ${minBase}mm (${pct}% wysokości ${totalHeightMm}mm).`,
           messageTech: `Pedestal base ${legProfileSizeMm}mm < required ${minBase}mm.`,
         });
       }
     }
 
-    if (METAL_MATERIALS.has(legMaterial) && legHeightMm > 700 && legProfileSizeMm < 60 && !hasFootBase) {
+    const mFoot = RULES.footBaseRules.metal;
+    if (METAL_MATERIALS.has(legMaterial) && legHeightMm > mFoot.maxLegHeightWithoutBase && legProfileSizeMm < mFoot.minProfileForNoBase && !hasFootBase) {
       violations.push({
         ruleId: 'STAB-03',
         field: 'hasFootBase',
-        messagepl: `Metalowa noga (${legHeightMm}mm, przekrój ${legProfileSizeMm}mm) wymaga stopy stabilizującej. Nogi >700mm z profilem <60mm są niestabilne bez stopy.`,
-        messageTech: `Metal leg h=${legHeightMm}mm > 700 and profile ${legProfileSizeMm}mm < 60 — foot base required.`,
+        messagepl: `Metalowa noga (${legHeightMm}mm, przekrój ${legProfileSizeMm}mm) wymaga stopy stabilizującej. Nogi >${mFoot.maxLegHeightWithoutBase}mm z profilem <${mFoot.minProfileForNoBase}mm są niestabilne bez stopy.`,
+        messageTech: `Metal leg h=${legHeightMm}mm > ${mFoot.maxLegHeightWithoutBase} and profile ${legProfileSizeMm}mm < ${mFoot.minProfileForNoBase} — foot base required.`,
       });
     }
 
-    if (WOOD_MATERIALS.has(legMaterial) && legHeightMm > 700 && legProfileSizeMm < 80 && !hasFootBase) {
+    const wFoot = RULES.footBaseRules.wood;
+    if (WOOD_MATERIALS.has(legMaterial) && legHeightMm > wFoot.maxLegHeightWithoutBase && legProfileSizeMm < wFoot.minProfileForNoBase && !hasFootBase) {
       violations.push({
         ruleId: 'STAB-03',
         field: 'hasFootBase',
-        messagepl: `Drewniana noga (${legHeightMm}mm, przekrój ${legProfileSizeMm}mm) wymaga stopy stabilizującej. Nogi drewniane >700mm z przekrojem <80mm wymagają stopy.`,
-        messageTech: `Wood leg h=${legHeightMm}mm > 700 and profile ${legProfileSizeMm}mm < 80 — foot base required.`,
+        messagepl: `Drewniana noga (${legHeightMm}mm, przekrój ${legProfileSizeMm}mm) wymaga stopy stabilizującej. Nogi drewniane >${wFoot.maxLegHeightWithoutBase}mm z przekrojem <${wFoot.minProfileForNoBase}mm wymagają stopy.`,
+        messageTech: `Wood leg h=${legHeightMm}mm > ${wFoot.maxLegHeightWithoutBase} and profile ${legProfileSizeMm}mm < ${wFoot.minProfileForNoBase} — foot base required.`,
       });
     }
   }
@@ -701,13 +948,6 @@ function checkStability(cfg) {
 }
 
 // ── LEG RULES ────────────────────────────────────────────────
-const LEG_MIN_PROFILES = [
-  { materials: ['steel','stainless_steel','aluminum'], profileType: 'round',       minSizeMm: 30 },
-  { materials: ['steel','stainless_steel','aluminum'], profileType: 'square',      minSizeMm: 40 },
-  { materials: ['steel','stainless_steel','aluminum'], profileType: 'rectangular', minSizeMm: 40 },
-];
-const MAX_SLENDERNESS_METAL = 25;
-const MAX_SLENDERNESS_WOOD  = 15;
 const PEDESTAL_VALID_SHAPES = new Set(['round', 'square']);
 
 function checkLegRules(cfg) {
@@ -719,32 +959,33 @@ function checkLegRules(cfg) {
     const { legRadialSpreadMm, legRadialCount } = cfg;
 
     if (legRadialSpreadMm != null) {
-      const minSpread = Math.ceil(0.4 * totalHeightMm);
+      const minSpread = Math.ceil(RULES.radialSpreadRatio * totalHeightMm);
+      const pct = Math.round(RULES.radialSpreadRatio * 100);
       if (legRadialSpreadMm < minSpread) {
         messages.push({
           ruleId: 'RADIAL-01',
           field: 'legRadialSpreadMm',
-          messagepl: `Promień rozstawu półwalców (${legRadialSpreadMm}mm) jest za mały. Przy wysokości stołu ${totalHeightMm}mm wymagany minimalny promień to ${minSpread}mm (40% wysokości). Stół będzie niestabilny.`,
+          messagepl: `Promień rozstawu półwalców (${legRadialSpreadMm}mm) jest za mały. Przy wysokości stołu ${totalHeightMm}mm wymagany minimalny promień to ${minSpread}mm (${pct}% wysokości). Stół będzie niestabilny.`,
           messageTech: `Radial spread ${legRadialSpreadMm}mm < required ${minSpread}mm.`,
         });
       }
     }
 
-    if (legRadialCount != null && legRadialCount < 3) {
+    if (legRadialCount != null && legRadialCount < RULES.radialMinCount) {
       messages.push({
         ruleId: 'RADIAL-02',
         field: 'legRadialCount',
-        messagepl: `Podstawa promieniowa wymaga co najmniej 3 półwalców. Podano ${legRadialCount}.`,
-        messageTech: `Radial count ${legRadialCount} < min 3.`,
+        messagepl: `Podstawa promieniowa wymaga co najmniej ${RULES.radialMinCount} półwalców. Podano ${legRadialCount}.`,
+        messageTech: `Radial count ${legRadialCount} < min ${RULES.radialMinCount}.`,
       });
     }
 
-    if (legProfileSizeMm < 60) {
+    if (legProfileSizeMm < RULES.radialMinDiameterMm) {
       messages.push({
         ruleId: 'RADIAL-03',
         field: 'legProfileSizeMm',
-        messagepl: `Średnica każdego półwalca w podstawie promieniowej musi wynosić co najmniej 60mm. Podano ${legProfileSizeMm}mm.`,
-        messageTech: `Radial halfcylinder diameter ${legProfileSizeMm}mm < min 60mm.`,
+        messagepl: `Średnica każdego półwalca w podstawie promieniowej musi wynosić co najmniej ${RULES.radialMinDiameterMm}mm. Podano ${legProfileSizeMm}mm.`,
+        messageTech: `Radial halfcylinder diameter ${legProfileSizeMm}mm < min ${RULES.radialMinDiameterMm}mm.`,
       });
     }
 
@@ -757,7 +998,7 @@ function checkLegRules(cfg) {
 
   // LEG-01 metal profile min
   if (isMetalLeg) {
-    const rule = LEG_MIN_PROFILES.find(r => r.materials.includes(legMaterial) && r.profileType === legProfileType);
+    const rule = RULES.legMinProfiles.find(r => r.materials.includes(legMaterial) && r.profileType === legProfileType);
     if (rule && legProfileSizeMm < rule.minSizeMm) {
       messages.push({
         ruleId: 'LEG-01',
@@ -770,7 +1011,7 @@ function checkLegRules(cfg) {
 
   // LEG-02 wood min profile
   if (isWoodLeg) {
-    const minSize = legHeightMm >= 750 ? 80 : 60;
+    const minSize = legHeightMm >= RULES.woodTallThreshold ? RULES.woodMinProfileTall : RULES.woodMinProfileShort;
     if (legProfileSizeMm < minSize) {
       messages.push({
         ruleId: 'LEG-02',
@@ -783,20 +1024,20 @@ function checkLegRules(cfg) {
 
   // LEG-03 slenderness
   const slenderness = legHeightMm / legProfileSizeMm;
-  if (isMetalLeg && slenderness > MAX_SLENDERNESS_METAL) {
+  if (isMetalLeg && slenderness > RULES.maxSlendernessMetal) {
     messages.push({
       ruleId: 'LEG-03',
       field: 'legProfileSizeMm',
-      messagepl: `Smukłość nogi metalowej λ=${slenderness.toFixed(1)} przekracza max ${MAX_SLENDERNESS_METAL}. Min. przekrój: ${Math.ceil(legHeightMm/MAX_SLENDERNESS_METAL)}mm.`,
-      messageTech: `Metal leg slenderness ${slenderness.toFixed(2)} > ${MAX_SLENDERNESS_METAL}.`,
+      messagepl: `Smukłość nogi metalowej λ=${slenderness.toFixed(1)} przekracza max ${RULES.maxSlendernessMetal}. Min. przekrój: ${Math.ceil(legHeightMm/RULES.maxSlendernessMetal)}mm.`,
+      messageTech: `Metal leg slenderness ${slenderness.toFixed(2)} > ${RULES.maxSlendernessMetal}.`,
     });
   }
-  if (isWoodLeg && slenderness > MAX_SLENDERNESS_WOOD) {
+  if (isWoodLeg && slenderness > RULES.maxSlendernessWood) {
     messages.push({
       ruleId: 'LEG-03',
       field: 'legProfileSizeMm',
-      messagepl: `Smukłość nogi drewnianej λ=${slenderness.toFixed(1)} przekracza max ${MAX_SLENDERNESS_WOOD}. Min. przekrój: ${Math.ceil(legHeightMm/MAX_SLENDERNESS_WOOD)}mm.`,
-      messageTech: `Wood leg slenderness ${slenderness.toFixed(2)} > ${MAX_SLENDERNESS_WOOD}.`,
+      messagepl: `Smukłość nogi drewnianej λ=${slenderness.toFixed(1)} przekracza max ${RULES.maxSlendernessWood}. Min. przekrój: ${Math.ceil(legHeightMm/RULES.maxSlendernessWood)}mm.`,
+      messageTech: `Wood leg slenderness ${slenderness.toFixed(2)} > ${RULES.maxSlendernessWood}.`,
     });
   }
 
@@ -828,30 +1069,30 @@ function checkHeight(cfg) {
   const violations = [];
   const { totalHeightMm, legHeightMm, topThicknessMm } = cfg;
 
-  if (totalHeightMm < 350) {
+  if (totalHeightMm < RULES.minTotalHeight) {
     violations.push({
       ruleId: 'HGT-01',
       field: 'totalHeightMm',
-      messagepl: `Całkowita wysokość stołu ${totalHeightMm}mm jest poniżej minimalnego limitu 350mm.`,
-      messageTech: `totalHeight ${totalHeightMm}mm below minimum 350mm.`,
+      messagepl: `Całkowita wysokość stołu ${totalHeightMm}mm jest poniżej minimalnego limitu ${RULES.minTotalHeight}mm.`,
+      messageTech: `totalHeight ${totalHeightMm}mm below minimum ${RULES.minTotalHeight}mm.`,
     });
   }
-  if (totalHeightMm > 1100) {
+  if (totalHeightMm > RULES.maxTotalHeight) {
     violations.push({
       ruleId: 'HGT-01',
       field: 'totalHeightMm',
-      messagepl: `Całkowita wysokość stołu ${totalHeightMm}mm przekracza maksymalny limit 1100mm.`,
-      messageTech: `totalHeight ${totalHeightMm}mm above maximum 1100mm.`,
+      messagepl: `Całkowita wysokość stołu ${totalHeightMm}mm przekracza maksymalny limit ${RULES.maxTotalHeight}mm.`,
+      messageTech: `totalHeight ${totalHeightMm}mm above maximum ${RULES.maxTotalHeight}mm.`,
     });
   }
 
   const expectedTotal = legHeightMm + topThicknessMm;
   const diff = Math.abs(totalHeightMm - expectedTotal);
-  if (diff > 2) {
+  if (diff > RULES.heightTolerance) {
     violations.push({
       ruleId: 'HGT-03',
       field: 'totalHeightMm',
-      messagepl: `Wysokość całkowita (${totalHeightMm}mm) ≠ noga (${legHeightMm}mm) + blat (${topThicknessMm}mm) = ${expectedTotal}mm. Różnica: ${diff}mm (tolerancja ±2mm).`,
+      messagepl: `Wysokość całkowita (${totalHeightMm}mm) ≠ noga (${legHeightMm}mm) + blat (${topThicknessMm}mm) = ${expectedTotal}mm. Różnica: ${diff}mm (tolerancja ±${RULES.heightTolerance}mm).`,
       messageTech: `totalHeight ${totalHeightMm}mm ≠ ${expectedTotal}mm (diff=${diff}mm).`,
     });
   }
@@ -859,8 +1100,6 @@ function checkHeight(cfg) {
 }
 
 // ── EDGE RULES ───────────────────────────────────────────────
-const EDGE_MIN_THICKNESS = { mitered: 20, beveled: 12 };
-
 function checkEdge(cfg) {
   const violations = [];
   const { topEdgeFinish, topThicknessMm } = cfg;
@@ -868,7 +1107,7 @@ function checkEdge(cfg) {
   const effectiveThickness = cfg.topConstruction === 'composite' && cfg.topFaceThicknessMm != null
     ? cfg.topFaceThicknessMm
     : topThicknessMm;
-  const minThickness = EDGE_MIN_THICKNESS[topEdgeFinish];
+  const minThickness = RULES.edgeMinThickness[topEdgeFinish];
   if (minThickness !== undefined && effectiveThickness < minThickness) {
     const ruleId = topEdgeFinish === 'mitered' ? 'EDGE-01' : 'EDGE-02';
     violations.push({
@@ -888,14 +1127,15 @@ function generateSuggestion(original, violations) {
   for (const v of violations) {
     switch (v.ruleId) {
       case 'MAT-01': {
-        const matMin = { sintered_stone:12, quartz:20, marble:20, granite:20 };
-        const min = matMin[cfg.topMaterial] || 20;
+        const min = RULES.materialMinThickness[cfg.topMaterial] || 20;
         if (cfg.topThicknessMm < min) cfg.topThicknessMm = min;
         break;
       }
       case 'MAT-02': {
-        if (cfg.topMaterial === 'sintered_stone' && cfg.topLengthMm > 1200) cfg.topThicknessMm = Math.max(cfg.topThicknessMm, 20);
-        if (['marble','granite'].includes(cfg.topMaterial) && cfg.topLengthMm > 1400) cfg.topThicknessMm = Math.max(cfg.topThicknessMm, 30);
+        for (const rule of RULES.materialSpanUpgrade) {
+          if (rule.materials.includes(cfg.topMaterial) && cfg.topLengthMm > rule.spanThresholdMm)
+            cfg.topThicknessMm = Math.max(cfg.topThicknessMm, rule.minThicknessMm);
+        }
         break;
       }
       case 'SPAN-01': {
@@ -908,9 +1148,11 @@ function generateSuggestion(original, violations) {
         break;
       }
       case 'SPAN-02': {
-        if (cfg.topThicknessMm < 30) { cfg.topThicknessMm = 30; }
+        const pedLimits = RULES.pedestalSpanLimits;
+        const maxThick = pedLimits[pedLimits.length - 1];
+        if (cfg.topThicknessMm < maxThick.minThicknessMm) { cfg.topThicknessMm = maxThick.minThicknessMm; }
         else {
-          const maxDiag = 1200;
+          const maxDiag = maxThick.maxDiagonalMm;
           const currentDiag = Math.sqrt(cfg.topLengthMm**2 + cfg.topWidthMm**2);
           if (currentDiag > maxDiag) {
             const scale = maxDiag / currentDiag;
@@ -921,29 +1163,29 @@ function generateSuggestion(original, violations) {
         break;
       }
       case 'STAB-01': {
-        const minW = Math.ceil(0.45 * cfg.totalHeightMm);
+        const minW = Math.ceil(RULES.minStabilityRatio * cfg.totalHeightMm);
         if (cfg.topWidthMm < minW) cfg.topWidthMm = minW;
         break;
       }
       case 'STAB-02': {
-        const minBase = Math.ceil(0.4 * cfg.totalHeightMm);
+        const minBase = Math.ceil(RULES.pedestalBaseRatio * cfg.totalHeightMm);
         if (cfg.legProfileSizeMm < minBase) cfg.legProfileSizeMm = minBase;
         break;
       }
       case 'STAB-03': { cfg.hasFootBase = true; break; }
       case 'LEG-01': {
-        const metalMin = { round:30, square:40, rectangular:40 };
-        const min = metalMin[cfg.legProfileType] || 40;
+        const rule = RULES.legMinProfiles.find(r => r.materials.includes(cfg.legMaterial) && r.profileType === cfg.legProfileType);
+        const min = rule ? rule.minSizeMm : 40;
         if (cfg.legProfileSizeMm < min) cfg.legProfileSizeMm = min;
         break;
       }
       case 'LEG-02': {
-        const min = cfg.legHeightMm >= 750 ? 80 : 60;
+        const min = cfg.legHeightMm >= RULES.woodTallThreshold ? RULES.woodMinProfileTall : RULES.woodMinProfileShort;
         if (cfg.legProfileSizeMm < min) cfg.legProfileSizeMm = min;
         break;
       }
       case 'LEG-03': {
-        const maxS = WOOD_MATERIALS.has(cfg.legMaterial) ? 15 : 25;
+        const maxS = WOOD_MATERIALS.has(cfg.legMaterial) ? RULES.maxSlendernessWood : RULES.maxSlendernessMetal;
         const minP = Math.ceil(cfg.legHeightMm / maxS);
         if (cfg.legProfileSizeMm < minP) cfg.legProfileSizeMm = minP;
         break;
@@ -954,69 +1196,47 @@ function generateSuggestion(original, violations) {
         break;
       }
       case 'HGT-01': {
-        if (cfg.totalHeightMm < 550) { cfg.totalHeightMm = 550; cfg.legHeightMm = 550 - cfg.topThicknessMm; }
-        else if (cfg.totalHeightMm > 1100) { cfg.totalHeightMm = 1100; cfg.legHeightMm = 1100 - cfg.topThicknessMm; }
+        const mid = Math.round((RULES.minTotalHeight + RULES.maxTotalHeight) / 2);
+        if (cfg.totalHeightMm < RULES.minTotalHeight) { cfg.totalHeightMm = mid; cfg.legHeightMm = mid - cfg.topThicknessMm; }
+        else if (cfg.totalHeightMm > RULES.maxTotalHeight) { cfg.totalHeightMm = RULES.maxTotalHeight; cfg.legHeightMm = RULES.maxTotalHeight - cfg.topThicknessMm; }
         break;
       }
       case 'HGT-03': { cfg.totalHeightMm = cfg.legHeightMm + cfg.topThicknessMm; break; }
-      case 'EDGE-01': { if (cfg.topThicknessMm < 20) cfg.topThicknessMm = 20; break; }
+      case 'EDGE-01': {
+        const eMin = RULES.edgeMinThickness['mitered'] ?? 20;
+        if (cfg.topThicknessMm < eMin) cfg.topThicknessMm = eMin;
+        break;
+      }
       case 'EDGE-02': {
-        if (cfg.topThicknessMm < 12) cfg.topEdgeFinish = 'straight';
-        else cfg.topThicknessMm = 12;
+        const eMin = RULES.edgeMinThickness['beveled'] ?? 12;
+        if (cfg.topThicknessMm < eMin) cfg.topEdgeFinish = 'straight';
+        else cfg.topThicknessMm = eMin;
         break;
       }
       case 'COMP-01': {
-        const faceMin = { sintered_stone: 6, quartz: 12, marble: 12, granite: 12 };
-        const min = faceMin[cfg.topMaterial] || 12;
+        const min = RULES.compositeFaceMin[cfg.topMaterial] || 12;
         if ((cfg.topFaceThicknessMm || 0) < min) cfg.topFaceThicknessMm = min;
         break;
       }
       case 'COMP-02':
       case 'COMP-03': {
         const face = cfg.topFaceThicknessMm || 6;
-        const minTotal = 2 * face + 10;
+        const minTotal = 2 * face + RULES.minCoreMm;
         if (cfg.topThicknessMm < minTotal) cfg.topThicknessMm = minTotal;
         break;
       }
       case 'RADIAL-01': {
-        const minSpread = Math.ceil(0.4 * cfg.totalHeightMm);
+        const minSpread = Math.ceil(RULES.radialSpreadRatio * cfg.totalHeightMm);
         if ((cfg.legRadialSpreadMm || 0) < minSpread) cfg.legRadialSpreadMm = minSpread;
         break;
       }
-      case 'RADIAL-02': { cfg.legRadialCount = 3; break; }
-      case 'RADIAL-03': { if (cfg.legProfileSizeMm < 60) cfg.legProfileSizeMm = 60; break; }
+      case 'RADIAL-02': { cfg.legRadialCount = RULES.radialMinCount; break; }
+      case 'RADIAL-03': { if (cfg.legProfileSizeMm < RULES.radialMinDiameterMm) cfg.legProfileSizeMm = RULES.radialMinDiameterMm; break; }
     }
   }
 
   cfg.totalHeightMm = cfg.legHeightMm + cfg.topThicknessMm;
   return cfg;
-}
-
-function minThicknessForSpan(material, spanMm) {
-  if (material === 'sintered_stone') {
-    if (spanMm <= 900) return 12;
-    if (spanMm <= 1200) return 20;
-    if (spanMm <= 1600) return 30;
-    return null;
-  }
-  if (['quartz','marble','granite'].includes(material)) {
-    if (spanMm <= 1600) return 30;
-    return null;
-  }
-  return null;
-}
-
-function maxSpanForThickness(material, thickness) {
-  if (material === 'sintered_stone') {
-    if (thickness >= 30) return 1600;
-    if (thickness >= 20) return 1200;
-    if (thickness >= 12) return 900;
-  }
-  if (['quartz','marble','granite'].includes(material)) {
-    if (thickness >= 30) return 1600;
-    if (thickness >= 20) return 1400;
-  }
-  return null;
 }
 
 // ── MAIN VALIDATE ────────────────────────────────────────────
@@ -1082,44 +1302,35 @@ const FIELD_LABELS = {
 };
 
 // ── DYNAMIC CONSTRAINTS ──────────────────────────────────────
-// Mirror of src/validation/constraints.ts — same thresholds, single source of truth.
-
-const ABS_BOUNDS = {
-  topThickness: { min: 6,   max: 60   },
-  topFace:      { min: 3,   max: 30   },
-  topLength:    { min: 200, max: 4000 },
-  topWidth:     { min: 100, max: 2000 },
-  legProfile:   { min: 10,  max: 500  },
-  radialSpread: { min: 50,  max: 1500 },
-};
+// Uses RULES.absBounds for all absolute limits.
 
 function getConstraints(p) {
   return {
-    topThicknessMm:    cTopThickness(p),
+    topThicknessMm:     cTopThickness(p),
     topFaceThicknessMm: cTopFace(p),
-    topLengthMm:       cTopLength(p),
-    topWidthMm:        cTopWidth(p),
-    totalHeightMm:     { min: 350, max: 1100, reason: 'Ergonomia: od 350mm (kawowy) do 1100mm (barowy)' },
-    legProfileSizeMm:  cLegProfile(p),
-    legRadialSpreadMm: cRadialSpread(p),
+    topLengthMm:        cTopLength(p),
+    topWidthMm:         cTopWidth(p),
+    totalHeightMm:      { min: RULES.minTotalHeight, max: RULES.maxTotalHeight, reason: `Ergonomia: od ${RULES.minTotalHeight}mm (kawowy) do ${RULES.maxTotalHeight}mm (barowy)` },
+    legProfileSizeMm:   cLegProfile(p),
+    legRadialSpreadMm:  cRadialSpread(p),
   };
 }
 
 function cTopThickness(p) {
-  let min = ABS_BOUNDS.topThickness.min, reason = 'Minimum produkcyjne';
+  let min = RULES.absBounds.topThickness.min, reason = 'Minimum produkcyjne';
   const isComposite = p.topConstruction === 'composite';
   if (isComposite) {
     const faceMin = p.topFaceThicknessMm
-      ?? (p.topMaterial ? (COMPOSITE_FACE_MIN[p.topMaterial] ?? 6) : 6);
-    const minTotal = 2 * faceMin + MIN_CORE_MM;
-    if (minTotal > min) { min = minTotal; reason = `Kompozyt: 2×${faceMin}mm tafle + ${MIN_CORE_MM}mm rdzeń = min. ${minTotal}mm`; }
+      ?? (p.topMaterial ? (RULES.compositeFaceMin[p.topMaterial] ?? 6) : 6);
+    const minTotal = 2 * faceMin + RULES.minCoreMm;
+    if (minTotal > min) { min = minTotal; reason = `Kompozyt: 2×${faceMin}mm tafle + ${RULES.minCoreMm}mm rdzeń = min. ${minTotal}mm`; }
   } else {
     if (p.topMaterial) {
-      const m = MATERIAL_MIN_THICKNESS[p.topMaterial] ?? min;
+      const m = RULES.materialMinThickness[p.topMaterial] ?? min;
       if (m > min) { min = m; reason = `${mlShort(p.topMaterial)} wymaga min. ${m}mm`; }
     }
     if (p.topMaterial && p.topLengthMm != null) {
-      for (const rule of MATERIAL_SPAN_UPGRADE) {
+      for (const rule of RULES.materialSpanUpgrade) {
         if (rule.materials.includes(p.topMaterial) && p.topLengthMm > rule.spanThresholdMm && rule.minThicknessMm > min) {
           min = rule.minThicknessMm;
           reason = `${mlShort(p.topMaterial)} przy ${p.topLengthMm}mm wymaga min. ${min}mm (ugięcie)`;
@@ -1131,97 +1342,99 @@ function cTopThickness(p) {
       if (sm !== null && sm > min) { min = sm; reason = `${mlShort(p.topMaterial)} ${p.topLengthMm}mm wymaga min. ${min}mm (rozpiętość)`; }
     }
     if (p.topEdgeFinish) {
-      const em = EDGE_MIN_THICKNESS[p.topEdgeFinish];
+      const em = RULES.edgeMinThickness[p.topEdgeFinish];
       if (em !== undefined && em > min) { min = em; reason = `Krawędź "${edgeLabel(p.topEdgeFinish)}" wymaga min. ${em}mm`; }
     }
   }
   const rec = isComposite ? min : recThickness(p.topMaterial, p.topLengthMm, min);
-  return { min, max: ABS_BOUNDS.topThickness.max, recommended: rec, reason };
+  return { min, max: RULES.absBounds.topThickness.max, recommended: rec, reason };
 }
 
 function cTopFace(p) {
-  let min = ABS_BOUNDS.topFace.min, reason = 'Minimum produkcyjne tafli';
+  let min = RULES.absBounds.topFace.min, reason = 'Minimum produkcyjne tafli';
   if (p.topConstruction === 'composite' && p.topMaterial) {
-    const fm = COMPOSITE_FACE_MIN[p.topMaterial] ?? min;
+    const fm = RULES.compositeFaceMin[p.topMaterial] ?? min;
     if (fm > min) { min = fm; reason = `${mlShort(p.topMaterial)}: min. ${fm}mm tafli (COMP-01)`; }
   }
   if (p.topConstruction === 'composite' && p.topEdgeFinish) {
-    const em = EDGE_MIN_THICKNESS[p.topEdgeFinish];
+    const em = RULES.edgeMinThickness[p.topEdgeFinish];
     if (em !== undefined && em > min) { min = em; reason = `Krawędź "${edgeLabel(p.topEdgeFinish)}" wymaga min. ${em}mm tafli`; }
   }
   const maxFromTotal = p.topThicknessMm != null
-    ? Math.floor((p.topThicknessMm - MIN_CORE_MM) / 2)
-    : ABS_BOUNDS.topFace.max;
-  const max = Math.max(min, Math.min(ABS_BOUNDS.topFace.max, maxFromTotal));
+    ? Math.floor((p.topThicknessMm - RULES.minCoreMm) / 2)
+    : RULES.absBounds.topFace.max;
+  const max = Math.max(min, Math.min(RULES.absBounds.topFace.max, maxFromTotal));
   return { min, max, recommended: min, reason };
 }
 
 function cTopLength(p) {
-  let max = ABS_BOUNDS.topLength.max, reason = 'Maksymalny wymiar produkcyjny';
-  const mult = p.topConstruction === 'composite' ? 1.4 : 1.0;
+  let max = RULES.absBounds.topLength.max, reason = 'Maksymalny wymiar produkcyjny';
+  const mult = p.topConstruction === 'composite' ? RULES.compositeSpanMultiplier : 1.0;
   if (p.topMaterial && p.topThicknessMm != null && p.legCount > 1 && p.legProfileType !== 'radial_halfcylinder') {
     const sm = maxSpanForThickness(p.topMaterial, p.topThicknessMm, mult);
     if (sm !== null && sm < max) {
       max = sm;
-      reason = `${mlShort(p.topMaterial)} ${p.topThicknessMm}mm: max ${max}mm${mult > 1 ? ' (kompozyt ×1.4)' : ''}`;
+      reason = `${mlShort(p.topMaterial)} ${p.topThicknessMm}mm: max ${max}mm${mult > 1 ? ` (kompozyt ×${RULES.compositeSpanMultiplier})` : ''}`;
     }
   }
-  return { min: ABS_BOUNDS.topLength.min, max, reason };
+  return { min: RULES.absBounds.topLength.min, max, reason };
 }
 
 function cTopWidth(p) {
-  let min = ABS_BOUNDS.topWidth.min, reason = 'Minimum produkcyjne';
+  let min = RULES.absBounds.topWidth.min, reason = 'Minimum produkcyjne';
   if (p.legProfileType !== 'radial_halfcylinder' && p.totalHeightMm) {
-    const sm = Math.ceil(MIN_STABILITY_RATIO * p.totalHeightMm);
-    if (sm > min) { min = sm; reason = `Stateczność: min. ${sm}mm (≥ ${Math.round(MIN_STABILITY_RATIO*100)}% wysokości ${p.totalHeightMm}mm)`; }
+    const sm = Math.ceil(RULES.minStabilityRatio * p.totalHeightMm);
+    if (sm > min) { min = sm; reason = `Stateczność: min. ${sm}mm (≥ ${Math.round(RULES.minStabilityRatio*100)}% wysokości ${p.totalHeightMm}mm)`; }
   }
-  return { min, max: ABS_BOUNDS.topWidth.max, reason };
+  return { min, max: RULES.absBounds.topWidth.max, reason };
 }
 
 function cLegProfile(p) {
-  let min = ABS_BOUNDS.legProfile.min, reason = 'Minimum strukturalne';
+  let min = RULES.absBounds.legProfile.min, reason = 'Minimum strukturalne';
   if (p.legProfileType === 'radial_halfcylinder') {
-    if (60 > min) { min = 60; reason = 'Półwalce promieniowe: min. 60mm średnicy (RADIAL-03)'; }
-    return { min, max: ABS_BOUNDS.legProfile.max, reason };
+    if (RULES.radialMinDiameterMm > min) { min = RULES.radialMinDiameterMm; reason = `Półwalce promieniowe: min. ${RULES.radialMinDiameterMm}mm średnicy (RADIAL-03)`; }
+    return { min, max: RULES.absBounds.legProfile.max, reason };
   }
   const isMetal = ['steel','stainless_steel','aluminum'].includes(p.legMaterial);
   const isWood  = ['solid_wood','laminated_wood'].includes(p.legMaterial);
   if (isMetal && p.legProfileType && p.legMaterial) {
-    const rule = LEG_MIN_PROFILES.find(r => r.materials.includes(p.legMaterial) && r.profileType === p.legProfileType);
+    const rule = RULES.legMinProfiles.find(r => r.materials.includes(p.legMaterial) && r.profileType === p.legProfileType);
     if (rule && rule.minSizeMm > min) { min = rule.minSizeMm; reason = `Metalowa noga "${profileLabel(p.legProfileType)}" wymaga min. ${min}mm (LEG-01)`; }
   }
   if (isWood && p.legHeightMm != null) {
-    const wm = p.legHeightMm >= 750 ? 80 : 60;
+    const wm = p.legHeightMm >= RULES.woodTallThreshold ? RULES.woodMinProfileTall : RULES.woodMinProfileShort;
     if (wm > min) { min = wm; reason = `Drewniana noga ${p.legHeightMm}mm: min. ${wm}mm (LEG-02)`; }
   }
   if (p.legHeightMm != null && (isMetal || isWood)) {
-    const maxS = isWood ? MAX_SLENDERNESS_WOOD : MAX_SLENDERNESS_METAL;
+    const maxS = isWood ? RULES.maxSlendernessWood : RULES.maxSlendernessMetal;
     const sm = Math.ceil(p.legHeightMm / maxS);
     if (sm > min) { min = sm; reason = `Smukłość λ≤${maxS}: min. ${sm}mm przy wys. ${p.legHeightMm}mm (LEG-03)`; }
   }
   if ((p.legCount === 1 || p.legProfileType === 'pedestal') && p.totalHeightMm) {
-    const pm = Math.ceil(0.4 * p.totalHeightMm);
-    if (pm > min) { min = pm; reason = `Piedestał: min. ${pm}mm podstawy (40% wys. ${p.totalHeightMm}mm)`; }
+    const pm = Math.ceil(RULES.pedestalBaseRatio * p.totalHeightMm);
+    const pct = Math.round(RULES.pedestalBaseRatio * 100);
+    if (pm > min) { min = pm; reason = `Piedestał: min. ${pm}mm podstawy (${pct}% wys. ${p.totalHeightMm}mm)`; }
   }
-  return { min, max: ABS_BOUNDS.legProfile.max, reason };
+  return { min, max: RULES.absBounds.legProfile.max, reason };
 }
 
 function cRadialSpread(p) {
-  let min = ABS_BOUNDS.radialSpread.min, reason = 'Minimalne rozpięcie półwalców';
+  let min = RULES.absBounds.radialSpread.min, reason = 'Minimalne rozpięcie półwalców';
   if (p.totalHeightMm) {
-    const sm = Math.ceil(0.4 * p.totalHeightMm);
-    if (sm > min) { min = sm; reason = `Stateczność: min. ${sm}mm promienia (≥ 40% wysokości ${p.totalHeightMm}mm)`; }
+    const sm = Math.ceil(RULES.radialSpreadRatio * p.totalHeightMm);
+    const pct = Math.round(RULES.radialSpreadRatio * 100);
+    if (sm > min) { min = sm; reason = `Stateczność: min. ${sm}mm promienia (≥ ${pct}% wysokości ${p.totalHeightMm}mm)`; }
   }
-  return { min, max: ABS_BOUNDS.radialSpread.max, reason };
+  return { min, max: RULES.absBounds.radialSpread.max, reason };
 }
 
 function minThicknessForSpan(material, span, mult) {
-  const tiers = SPAN_LIMITS_4LEG.filter(r => r.materials.includes(material)).sort((a,b) => a.minThicknessMm - b.minThicknessMm);
+  const tiers = RULES.spanLimits4Leg.filter(r => r.materials.includes(material)).sort((a,b) => a.minThicknessMm - b.minThicknessMm);
   for (const t of tiers) { if (span <= t.maxSpanMm * mult) return t.minThicknessMm; }
   return null;
 }
 function maxSpanForThickness(material, thickness, mult) {
-  const tiers = SPAN_LIMITS_4LEG.filter(r => r.materials.includes(material)).sort((a,b) => b.minThicknessMm - a.minThicknessMm);
+  const tiers = RULES.spanLimits4Leg.filter(r => r.materials.includes(material)).sort((a,b) => b.minThicknessMm - a.minThicknessMm);
   const t = tiers.find(r => thickness >= r.minThicknessMm);
   return t ? Math.round(t.maxSpanMm * mult) : null;
 }
@@ -1473,6 +1686,424 @@ function runValidation() {
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+// ── EXPERT PANEL ─────────────────────────────────────────────
+
+const ALL_MATS = ['sintered_stone','quartz','marble','granite'];
+const MAT_LABELS = { sintered_stone:'Spiek', quartz:'Kwarc', marble:'Marmur', granite:'Granit' };
+
+function toggleExpertPanel() {
+  const panel = document.getElementById('expertPanel');
+  const btn   = document.getElementById('btnExpert');
+  const isVisible = panel.classList.toggle('visible');
+  btn.classList.toggle('active', isVisible);
+  if (isVisible) {
+    renderExpertPanel();
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+  }
+}
+
+function updateExpertBadge() {
+  const stored = localStorage.getItem('expertRules');
+  document.getElementById('expertBadge').classList.toggle('visible', !!stored);
+}
+
+function renderExpertPanel() {
+  const tabs = [
+    { id:'mat',    label:'Materiały' },
+    { id:'comp',   label:'Kompozyt' },
+    { id:'span',   label:'Rozpiętość' },
+    { id:'stab',   label:'Stateczność' },
+    { id:'legmet', label:'Nogi metal.' },
+    { id:'legwoo', label:'Nogi drewn.' },
+    { id:'radial', label:'Półwalce' },
+    { id:'height', label:'Wysokość' },
+    { id:'abs',    label:'Granice abs.' },
+  ];
+
+  // Tab bar
+  const tabBar = document.getElementById('epTabBar');
+  tabBar.innerHTML = tabs.map((t,i) =>
+    `<div class="ep-tab${i===0?' active':''}" onclick="switchTab('${t.id}')" id="tab-${t.id}">${t.label}</div>`
+  ).join('');
+
+  // Tab contents
+  const cont = document.getElementById('epTabContents');
+  cont.innerHTML = tabs.map((t,i) =>
+    `<div class="ep-tab-content${i===0?' active':''}" id="tc-${t.id}">${buildTabContent(t.id)}</div>`
+  ).join('');
+}
+
+function switchTab(id) {
+  document.querySelectorAll('.ep-tab').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.ep-tab-content').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('tc-'+id).classList.add('active');
+}
+
+function buildTabContent(id) {
+  const R = RULES;
+  switch(id) {
+    case 'mat': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Minimalna grubość blatu litego (mm) — MAT-01</div>
+        ${ALL_MATS.map(m => epField(`mat_minthick_${m}`, MAT_LABELS[m], R.materialMinThickness[m], 'Minimalna grubość dla materiału (MAT-01)')).join('')}
+      </div>
+      <div class="ep-group">
+        <div class="ep-group-title">Progi grubości przy dużej rozpiętości — MAT-02</div>
+        ${buildSpanUpgradeTable()}
+      </div>`;
+
+    case 'comp': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Minimalna grubość tafli kompozytowej (mm) — COMP-01</div>
+        ${ALL_MATS.map(m => epField(`comp_facemin_${m}`, MAT_LABELS[m], R.compositeFaceMin[m], 'Min. grubość tafli licowej dla materiału')).join('')}
+      </div>
+      <div class="ep-group">
+        <div class="ep-group-title">Rdzeń i kompozyt</div>
+        ${epField('comp_mincoreMm', 'Min. grubość rdzenia (mm)', R.minCoreMm, 'COMP-02: rdzeń = grubość − 2×tafla ≥ ta wartość')}
+        ${epField('comp_spanmult', 'Mnożnik rozpiętości kompozytu', R.compositeSpanMultiplier, 'Kompozyt jest sztywniejszy — limity span mnożone przez tę wartość')}
+      </div>`;
+
+    case 'span': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Limity rozpiętości — 4 nogi (SPAN-01)</div>
+        ${buildSpan4LegTable()}
+      </div>
+      <div class="ep-group">
+        <div class="ep-group-title">Limity rozpiętości — piedestał (SPAN-02)</div>
+        ${buildPedestalSpanTable()}
+      </div>`;
+
+    case 'stab': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Stateczność ogólna</div>
+        ${epField('stab_minratio', 'Min. wskaźnik stateczności', R.minStabilityRatio, 'STAB-01: rzut poziomy / wysokość ≥ ta wartość (np. 0.45)')}
+        ${epField('stab_pedratio', 'Wskaźnik podstawy piedestału', R.pedestalBaseRatio, 'STAB-02: min. rozmiar podstawy piedestału = ta wartość × wys. (np. 0.40)')}
+      </div>
+      <div class="ep-group">
+        <div class="ep-group-title">Stopa stabilizująca — metal (STAB-03)</div>
+        ${epField('stab_metal_maxh', 'Max wys. nogi bez stopy (mm)', R.footBaseRules.metal.maxLegHeightWithoutBase, 'Powyżej tej wys. noga metalowa wymaga stopy, jeśli profil za mały')}
+        ${epField('stab_metal_minp', 'Min. profil bez stopy (mm)', R.footBaseRules.metal.minProfileForNoBase, 'Jeśli profil < ta wartość i wys. > max — stopa wymagana')}
+      </div>
+      <div class="ep-group">
+        <div class="ep-group-title">Stopa stabilizująca — drewno (STAB-03)</div>
+        ${epField('stab_wood_maxh', 'Max wys. nogi bez stopy (mm)', R.footBaseRules.wood.maxLegHeightWithoutBase, 'Powyżej tej wys. noga drewniana wymaga stopy, jeśli profil za mały')}
+        ${epField('stab_wood_minp', 'Min. profil bez stopy (mm)', R.footBaseRules.wood.minProfileForNoBase, 'Jeśli profil < ta wartość i wys. > max — stopa wymagana')}
+      </div>`;
+
+    case 'legmet': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Minimalne profile nóg metalowych (LEG-01)</div>
+        ${buildLegProfilesTable()}
+      </div>`;
+
+    case 'legwoo': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Minimalne profile nóg drewnianych (LEG-02)</div>
+        ${epField('wood_minshort', 'Min. profil — nogi niskie (mm)', R.woodMinProfileShort, 'Nogi drewniane poniżej progu wysokości')}
+        ${epField('wood_mintall',  'Min. profil — nogi wysokie (mm)', R.woodMinProfileTall, 'Nogi drewniane powyżej progu wysokości')}
+        ${epField('wood_thresh',   'Próg wysokości nogi (mm)', R.woodTallThreshold, 'Nogi ≥ tej wys. klasyfikowane jako "wysokie" — LEG-02')}
+      </div>
+      <div class="ep-group">
+        <div class="ep-group-title">Smukłość Eulera (LEG-03)</div>
+        ${epField('slen_metal', 'Max smukłość λ — metal', R.maxSlendernessMetal, 'λ = wys./przekrój ≤ ta wartość (LEG-03 nogi metalowe)')}
+        ${epField('slen_wood',  'Max smukłość λ — drewno', R.maxSlendernessWood,  'λ = wys./przekrój ≤ ta wartość (LEG-03 nogi drewniane)')}
+      </div>`;
+
+    case 'radial': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Podstawa półwalcowa promieniowa</div>
+        ${epField('rad_ratio',  'Współczynnik promienia rozstawu', R.radialSpreadRatio, 'RADIAL-01: min. promień = ta wartość × wys. stołu (np. 0.40)')}
+        ${epField('rad_mincount', 'Minimalna liczba półwalców', R.radialMinCount, 'RADIAL-02: co najmniej ta liczba półwalców')}
+        ${epField('rad_mindiam', 'Min. średnica półwalca (mm)', R.radialMinDiameterMm, 'RADIAL-03: każdy półwalec musi mieć co najmniej tę średnicę')}
+      </div>`;
+
+    case 'height': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Limity wysokości całkowitej (HGT-01)</div>
+        ${epField('hgt_min', 'Min. wysokość stołu (mm)', R.minTotalHeight, 'Poniżej tej wartości — naruszenie HGT-01')}
+        ${epField('hgt_max', 'Max wysokość stołu (mm)', R.maxTotalHeight, 'Powyżej tej wartości — naruszenie HGT-01')}
+        ${epField('hgt_tol', 'Tolerancja sum. wys. (mm)', R.heightTolerance, 'HGT-03: |wys.całk. − noga − blat| ≤ ta tolerancja')}
+      </div>`;
+
+    case 'abs': return `
+      <div class="ep-group">
+        <div class="ep-group-title">Absolutne granice pól formularza</div>
+        ${epBoundsField('abs_topthick',  'Grubość blatu',       'topThickness')}
+        ${epBoundsField('abs_topface',   'Grubość tafli',       'topFace')}
+        ${epBoundsField('abs_toplen',    'Długość blatu',       'topLength')}
+        ${epBoundsField('abs_topwid',    'Szerokość blatu',     'topWidth')}
+        ${epBoundsField('abs_legprof',   'Profil nogi',         'legProfile')}
+        ${epBoundsField('abs_radspread', 'Promień rozstawu',    'radialSpread')}
+      </div>`;
+
+    default: return '';
+  }
+}
+
+function epField(id, label, value, desc) {
+  return `<div class="ep-field">
+    <label for="${id}">${label}</label>
+    <input type="number" id="${id}" value="${value}" step="any" />
+    <span class="ep-desc">${desc}</span>
+  </div>`;
+}
+
+function epBoundsField(prefix, label, key) {
+  const b = RULES.absBounds[key];
+  return `<div class="ep-field">
+    <label>${label}</label>
+    <div style="display:flex;gap:4px;align-items:center">
+      <input type="number" id="${prefix}_min" value="${b.min}" style="width:65px" title="min" />
+      <span style="font-size:11px;color:#999">–</span>
+      <input type="number" id="${prefix}_max" value="${b.max}" style="width:65px" title="max" />
+    </div>
+    <span class="ep-desc">Min / Max absolutny dla pola</span>
+  </div>`;
+}
+
+function buildSpanUpgradeTable() {
+  const rows = RULES.materialSpanUpgrade.map((r, i) => `
+    <tr>
+      <td><div class="mat-checkboxes">${ALL_MATS.map(m =>
+        `<label class="mat-cb"><input type="checkbox" data-table="msu" data-row="${i}" data-mat="${m}" ${r.materials.includes(m)?'checked':''} />${MAT_LABELS[m]}</label>`
+      ).join('')}</div></td>
+      <td><input type="number" id="msu_${i}_span" value="${r.spanThresholdMm}" /></td>
+      <td><input type="number" id="msu_${i}_thick" value="${r.minThicknessMm}" /></td>
+      <td><button class="btn-del-row" onclick="delRow('msu',${i})">✕</button></td>
+    </tr>`).join('');
+  return `<table class="ep-table">
+    <thead><tr><th>Materiały</th><th>Próg rozp. (mm)</th><th>Min. grubość (mm)</th><th></th></tr></thead>
+    <tbody id="msu-body">${rows}</tbody>
+  </table>
+  <button class="btn-add-row" onclick="addRow('msu')">+ Dodaj wiersz</button>`;
+}
+
+function buildSpan4LegTable() {
+  const rows = RULES.spanLimits4Leg.map((r, i) => `
+    <tr>
+      <td><div class="mat-checkboxes">${ALL_MATS.map(m =>
+        `<label class="mat-cb"><input type="checkbox" data-table="s4l" data-row="${i}" data-mat="${m}" ${r.materials.includes(m)?'checked':''} />${MAT_LABELS[m]}</label>`
+      ).join('')}</div></td>
+      <td><input type="number" id="s4l_${i}_thick" value="${r.minThicknessMm}" /></td>
+      <td><input type="number" id="s4l_${i}_span"  value="${r.maxSpanMm}" /></td>
+      <td><button class="btn-del-row" onclick="delRow('s4l',${i})">✕</button></td>
+    </tr>`).join('');
+  return `<table class="ep-table">
+    <thead><tr><th>Materiały</th><th>Min. grubość (mm)</th><th>Max rozpiętość (mm)</th><th></th></tr></thead>
+    <tbody id="s4l-body">${rows}</tbody>
+  </table>
+  <button class="btn-add-row" onclick="addRow('s4l')">+ Dodaj wiersz</button>`;
+}
+
+function buildPedestalSpanTable() {
+  const rows = RULES.pedestalSpanLimits.map((r, i) => `
+    <tr>
+      <td><input type="number" id="psl_${i}_thick" value="${r.minThicknessMm}" /></td>
+      <td><input type="number" id="psl_${i}_diag"  value="${r.maxDiagonalMm}" /></td>
+      <td><button class="btn-del-row" onclick="delRow('psl',${i})">✕</button></td>
+    </tr>`).join('');
+  return `<table class="ep-table">
+    <thead><tr><th>Min. grubość (mm)</th><th>Max przekątna (mm)</th><th></th></tr></thead>
+    <tbody id="psl-body">${rows}</tbody>
+  </table>
+  <button class="btn-add-row" onclick="addRow('psl')">+ Dodaj wiersz</button>`;
+}
+
+function buildLegProfilesTable() {
+  const rows = RULES.legMinProfiles.map((r, i) => `
+    <tr>
+      <td><div class="mat-checkboxes">${['steel','stainless_steel','aluminum'].map(m =>
+        `<label class="mat-cb"><input type="checkbox" data-table="lmp" data-row="${i}" data-mat="${m}" ${r.materials.includes(m)?'checked':''} />${{steel:'Stal',stainless_steel:'Nierdzewna',aluminum:'Aluminium'}[m]}</label>`
+      ).join('')}</div></td>
+      <td>
+        <select id="lmp_${i}_prof">
+          ${['round','square','rectangular'].map(p =>
+            `<option value="${p}" ${r.profileType===p?'selected':''}>${profileLabel(p)}</option>`
+          ).join('')}
+        </select>
+      </td>
+      <td><input type="number" id="lmp_${i}_size" value="${r.minSizeMm}" /></td>
+      <td><button class="btn-del-row" onclick="delRow('lmp',${i})">✕</button></td>
+    </tr>`).join('');
+  return `<table class="ep-table">
+    <thead><tr><th>Materiały</th><th>Profil</th><th>Min. rozmiar (mm)</th><th></th></tr></thead>
+    <tbody id="lmp-body">${rows}</tbody>
+  </table>
+  <button class="btn-add-row" onclick="addRow('lmp')">+ Dodaj wiersz</button>`;
+}
+
+function addRow(tableId) {
+  // Add default row to corresponding RULES array, re-render current tab
+  if (tableId === 'msu') {
+    RULES.materialSpanUpgrade.push({ materials: ['sintered_stone'], spanThresholdMm: 1000, minThicknessMm: 20 });
+    switchTab('mat'); document.getElementById('tc-mat').innerHTML = buildTabContent('mat');
+  } else if (tableId === 's4l') {
+    RULES.spanLimits4Leg.push({ materials: ['sintered_stone'], minThicknessMm: 12, maxSpanMm: 900 });
+    switchTab('span'); document.getElementById('tc-span').innerHTML = buildTabContent('span');
+  } else if (tableId === 'psl') {
+    RULES.pedestalSpanLimits.push({ minThicknessMm: 20, maxDiagonalMm: 1000 });
+    switchTab('span'); document.getElementById('tc-span').innerHTML = buildTabContent('span');
+  } else if (tableId === 'lmp') {
+    RULES.legMinProfiles.push({ materials: ['steel'], profileType: 'round', minSizeMm: 30 });
+    switchTab('legmet'); document.getElementById('tc-legmet').innerHTML = buildTabContent('legmet');
+  }
+}
+
+function delRow(tableId, idx) {
+  if (tableId === 'msu') {
+    RULES.materialSpanUpgrade.splice(idx, 1);
+    document.getElementById('tc-mat').innerHTML = buildTabContent('mat');
+  } else if (tableId === 's4l') {
+    RULES.spanLimits4Leg.splice(idx, 1);
+    document.getElementById('tc-span').innerHTML = buildTabContent('span');
+  } else if (tableId === 'psl') {
+    RULES.pedestalSpanLimits.splice(idx, 1);
+    document.getElementById('tc-span').innerHTML = buildTabContent('span');
+  } else if (tableId === 'lmp') {
+    RULES.legMinProfiles.splice(idx, 1);
+    document.getElementById('tc-legmet').innerHTML = buildTabContent('legmet');
+  }
+}
+
+function readRulesFromPanel() {
+  const v = id => { const el = document.getElementById(id); return el ? parseFloat(el.value) : null; };
+  const R = structuredClone(RULES);
+
+  // Materiały
+  ALL_MATS.forEach(m => { const val = v(`mat_minthick_${m}`); if (val !== null) R.materialMinThickness[m] = val; });
+
+  // materialSpanUpgrade — read from checkboxes + inputs
+  R.materialSpanUpgrade = R.materialSpanUpgrade.map((row, i) => ({
+    materials: ALL_MATS.filter(m => {
+      const cb = document.querySelector(`input[data-table="msu"][data-row="${i}"][data-mat="${m}"]`);
+      return cb && cb.checked;
+    }),
+    spanThresholdMm: v(`msu_${i}_span`) ?? row.spanThresholdMm,
+    minThicknessMm:  v(`msu_${i}_thick`) ?? row.minThicknessMm,
+  }));
+
+  // Kompozyt
+  ALL_MATS.forEach(m => { const val = v(`comp_facemin_${m}`); if (val !== null) R.compositeFaceMin[m] = val; });
+  if (v('comp_mincoreMm') !== null) R.minCoreMm = v('comp_mincoreMm');
+  if (v('comp_spanmult') !== null)  R.compositeSpanMultiplier = v('comp_spanmult');
+
+  // spanLimits4Leg
+  R.spanLimits4Leg = R.spanLimits4Leg.map((row, i) => ({
+    materials: ALL_MATS.filter(m => {
+      const cb = document.querySelector(`input[data-table="s4l"][data-row="${i}"][data-mat="${m}"]`);
+      return cb && cb.checked;
+    }),
+    minThicknessMm: v(`s4l_${i}_thick`) ?? row.minThicknessMm,
+    maxSpanMm:      v(`s4l_${i}_span`)  ?? row.maxSpanMm,
+  }));
+
+  // pedestalSpanLimits
+  R.pedestalSpanLimits = R.pedestalSpanLimits.map((row, i) => ({
+    minThicknessMm: v(`psl_${i}_thick`) ?? row.minThicknessMm,
+    maxDiagonalMm:  v(`psl_${i}_diag`)  ?? row.maxDiagonalMm,
+  }));
+
+  // Stateczność
+  if (v('stab_minratio') !== null) R.minStabilityRatio = v('stab_minratio');
+  if (v('stab_pedratio') !== null) R.pedestalBaseRatio = v('stab_pedratio');
+  if (v('stab_metal_maxh') !== null) R.footBaseRules.metal.maxLegHeightWithoutBase = v('stab_metal_maxh');
+  if (v('stab_metal_minp') !== null) R.footBaseRules.metal.minProfileForNoBase     = v('stab_metal_minp');
+  if (v('stab_wood_maxh')  !== null) R.footBaseRules.wood.maxLegHeightWithoutBase  = v('stab_wood_maxh');
+  if (v('stab_wood_minp')  !== null) R.footBaseRules.wood.minProfileForNoBase      = v('stab_wood_minp');
+
+  // Nogi metalowe
+  R.legMinProfiles = R.legMinProfiles.map((row, i) => {
+    const sel = document.getElementById(`lmp_${i}_prof`);
+    return {
+      materials: ['steel','stainless_steel','aluminum'].filter(m => {
+        const cb = document.querySelector(`input[data-table="lmp"][data-row="${i}"][data-mat="${m}"]`);
+        return cb && cb.checked;
+      }),
+      profileType: sel ? sel.value : row.profileType,
+      minSizeMm:   v(`lmp_${i}_size`) ?? row.minSizeMm,
+    };
+  });
+
+  // Nogi drewniane + smukłość
+  if (v('wood_minshort') !== null) R.woodMinProfileShort = v('wood_minshort');
+  if (v('wood_mintall')  !== null) R.woodMinProfileTall  = v('wood_mintall');
+  if (v('wood_thresh')   !== null) R.woodTallThreshold   = v('wood_thresh');
+  if (v('slen_metal')    !== null) R.maxSlendernessMetal = v('slen_metal');
+  if (v('slen_wood')     !== null) R.maxSlendernessWood  = v('slen_wood');
+
+  // Półwalce
+  if (v('rad_ratio')    !== null) R.radialSpreadRatio   = v('rad_ratio');
+  if (v('rad_mincount') !== null) R.radialMinCount      = v('rad_mincount');
+  if (v('rad_mindiam')  !== null) R.radialMinDiameterMm = v('rad_mindiam');
+
+  // Wysokość
+  if (v('hgt_min') !== null) R.minTotalHeight  = v('hgt_min');
+  if (v('hgt_max') !== null) R.maxTotalHeight  = v('hgt_max');
+  if (v('hgt_tol') !== null) R.heightTolerance = v('hgt_tol');
+
+  // Granice absolutne
+  const absKeys = { abs_topthick:'topThickness', abs_topface:'topFace', abs_toplen:'topLength',
+                    abs_topwid:'topWidth', abs_legprof:'legProfile', abs_radspread:'radialSpread' };
+  for (const [prefix, key] of Object.entries(absKeys)) {
+    if (v(`${prefix}_min`) !== null) R.absBounds[key].min = v(`${prefix}_min`);
+    if (v(`${prefix}_max`) !== null) R.absBounds[key].max = v(`${prefix}_max`);
+  }
+
+  return R;
+}
+
+function saveRules() {
+  RULES = readRulesFromPanel();
+  localStorage.setItem('expertRules', JSON.stringify(RULES));
+  updateExpertBadge();
+  updateConstraints();
+  if (document.getElementById('results').style.display !== 'none') runValidation();
+  // Flash save button as feedback
+  const btn = document.querySelector('.btn-ep-save');
+  if (btn) { btn.textContent = 'Zapisano ✓'; setTimeout(() => btn.textContent = 'Zapisz reguły', 1500); }
+}
+
+function exportRules() {
+  const json = JSON.stringify(RULES, null, 2);
+  const a = document.createElement('a');
+  a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(json);
+  a.download = 'table-rules.json';
+  a.click();
+}
+
+function toggleImport() {
+  const wrap = document.getElementById('epImportWrap');
+  wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+}
+
+function importRules() {
+  const txt = document.getElementById('epImportText').value.trim();
+  try {
+    const parsed = JSON.parse(txt);
+    RULES = parsed;
+    localStorage.setItem('expertRules', JSON.stringify(RULES));
+    updateExpertBadge();
+    renderExpertPanel();
+    updateConstraints();
+    if (document.getElementById('results').style.display !== 'none') runValidation();
+    document.getElementById('epImportWrap').style.display = 'none';
+    document.getElementById('epImportText').value = '';
+  } catch(e) {
+    alert('Błąd parsowania JSON: ' + e.message);
+  }
+}
+
+function resetRules() {
+  if (!confirm('Przywrócić wszystkie reguły do wartości domyślnych?')) return;
+  localStorage.removeItem('expertRules');
+  RULES = structuredClone(DEFAULT_RULES);
+  updateExpertBadge();
+  renderExpertPanel();
+  updateConstraints();
+  if (document.getElementById('results').style.display !== 'none') runValidation();
+}
+
 // ── INIT ─────────────────────────────────────────────────────
 let _validationTimer = null;
 
@@ -1491,6 +2122,7 @@ document.getElementById('configForm').addEventListener('input', function () {
 
 // Initial constraint hints on page load
 updateConstraints();
+updateExpertBadge();
 </script>
 </body>
 </html>
